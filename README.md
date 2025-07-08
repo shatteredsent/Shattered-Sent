@@ -257,7 +257,7 @@
             </form>
             <div class="mt-12 text-center text-gray-600">
                 <p class="mb-2">You can also reach us at:</p>
-                <p class="text-xl font-semibold text-indigo-700">info@shatteredandsent.org</p>
+                <p class="text-xl font-semibold text-indigo-700">shattered.sent@gmail.com</p>
             </div>
         </div>
     </section>
