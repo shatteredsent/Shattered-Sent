@@ -11,8 +11,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background-color: #f8fafc; /* Light blue-gray background */
         }
+        /* Custom scrollbar for a cleaner look */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -21,11 +22,11 @@
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #cbd5e1; /* Gray-300 */
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #94a3b8; /* Gray-400 */
         }
     </style>
 </head>
@@ -45,6 +46,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-24 px-6 md:px-12 flex items-center justify-center min-h-[500px] rounded-b-xl shadow-lg mt-4 mx-4 md:mx-auto max-w-7xl">
+        <!-- Placeholder for a subtle background image or pattern -->
         <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://placehold.co/1920x1080/6366F1/ffffff?text=Inspiration');"></div>
         <div class="relative z-10 text-center">
             <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
@@ -62,6 +64,7 @@
     <!-- Content Section -->
     <section id="content" class="py-16 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mx-4 md:mx-auto max-w-7xl">
         <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Our Latest Content</h2>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Content Card 1 -->
             <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
@@ -73,10 +76,11 @@
                     </p>
                     <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium flex items-center">
                         Read More
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
             </div>
+
             <!-- Content Card 2 -->
             <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
                 <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Sermon" alt="Sermon Image" class="w-full h-48 object-cover">
@@ -87,10 +91,11 @@
                     </p>
                     <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium flex items-center">
                         Listen Now
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
             </div>
+
             <!-- Content Card 3 -->
             <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
                 <img src="https://placehold.co/600x400/c7d2fe/ffffff?text=Testimony" alt="Testimony Image" class="w-full h-48 object-cover">
@@ -101,7 +106,7 @@
                     </p>
                     <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium flex items-center">
                         Read Story
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
             </div>
