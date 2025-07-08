@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<From Broken to Bold Faith>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
