@@ -329,3 +329,66 @@
     });
   });
 </script>
+
+<!-- Load YouTube Platform Script (for Subscribe button) -->
+<script src="https://apis.google.com/js/platform.js"></script>
+
+<!-- Responsive Video Container -->
+<div class="video-wrapper" id="latestVideo"></div>
+
+<!-- Subscribe Button -->
+<div class="subscribe-btn">
+  <div class="g-ytsubscribe"
+       data-channelid="UCjhAWGLaxd124jxAdD_digQ"
+       data-layout="default"
+       data-count="default">
+  </div>
+</div>
+
+<!-- Load Latest Video via YouTube API -->
+<script>
+  const apiKey = 'AIzaSyBA0y6E7SltRstGwtSSX_X05Puran6YMUA';
+  const channelId = 'UCjhAWGLaxd124jxAdD_digQ';
+
+  fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=1`)
+    .then(response => response.json())
+    .then(data => {
+      const videoId = data.items[0].id.videoId;
+      const embedHtml = `
+        <iframe 
+          src="https://www.youtube.com/embed/${videoId}" 
+          title="Latest YouTube Video"
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>`;
+      document.getElementById('latestVideo').innerHTML = embedHtml;
+    })
+    .catch(error => {
+      console.error('Error loading latest video:', error);
+    });
+</script>
+
+<!-- Style for responsiveness and layout -->
+<style>
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .subscribe-btn {
+    text-align: center;
+    margin-top: 10px;
+  }
+</style>
