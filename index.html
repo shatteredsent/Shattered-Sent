@@ -121,9 +121,9 @@
     .animate-pulse-once:hover {
       animation: pulse-once 0.5s ease-in-out;
     }
-    /* Styles for the logo in the header */
+    /* Styles for the logo in the header - ADJUSTED MAX-WIDTHS HERE */
     .header-logo-container {
-        max-width: 200px; /* Adjust max width as needed */
+        max-width: 150px; /* Smaller default max width */
         height: auto;
     }
     .header-logo-container img {
@@ -134,12 +134,12 @@
     /* Responsive adjustments for header logo */
     @media (min-width: 640px) { /* sm breakpoint */
         .header-logo-container {
-            max-width: 250px; /* Larger max width on small screens and up */
+            max-width: 180px; /* Smaller max width on small screens and up */
         }
     }
     @media (min-width: 768px) { /* md breakpoint */
         .header-logo-container {
-            max-width: 300px; /* Larger max width on medium screens and up */
+            max-width: 220px; /* Smaller max width on medium screens and up */
         }
     }
   </style>
