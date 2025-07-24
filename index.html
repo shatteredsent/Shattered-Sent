@@ -1,89 +1,271 @@
-index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shattered Sent | Healing Through Redemption</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shattered & Sent | Healing Through Redemption</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f3f4f6;
-      color: #1f2937;
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      scroll-behavior: smooth;
+      color: #1e293b;
     }
-
     header {
+      background: white;
+      box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+      padding: 1rem 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+    header h1 {
+      color: #4f46e5;
+      font-weight: 700;
+      font-size: 1.875rem;
+      margin-bottom: 0;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav a {
+      color: #334155;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #6366f1;
+    }
+    main {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      margin-bottom: 4rem;
+    }
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    /* Video container responsive */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      margin: 0 auto 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      border-radius: 1rem;
+    }
+    /* Subscribe button */
+    .subscribe-btn {
+      display: block;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .subscribe-btn .g-ytsubscribe {
+      display: inline-block;
+    }
+    /* Back to Top Button */
+    #backToTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
       background-color: #4f46e5;
       color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    main {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-    }
-
-    iframe {
-      width: 100%;
-      height: 360px;
       border: none;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.3s, transform 0.3s;
     }
-
-    .subscribe-button {
-      display: inline-block;
-      background-color: #dc2626;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background-color 0.3s;
+    #backToTopBtn:hover {
+      background-color: #4338ca;
+      transform: translateY(-3px);
     }
-
-    .subscribe-button:hover {
-      background-color: #b91c1c;
+    /* Pulse animation */
+    @keyframes pulse-once {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
     }
-
-    footer {
-      background-color: #e5e7eb;
-      padding: 20px;
-      text-align: center;
-      font-size: 0.9rem;
+    .animate-pulse-once:hover {
+      animation: pulse-once 0.5s ease-in-out;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Shattered Sent</h1>
-    <p>Healing, Forgiveness & Redemption in Christ</p>
+    <h1>Shattered & Sent</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#content">Content</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-    <h2>📺 Latest from My YouTube Channel</h2>
+    <!-- Home / Hero -->
+    <section id="home" style="text-align:center; margin-bottom: 4rem;">
+      <h2>Welcome to Shattered & Sent</h2>
+      <p style="max-width:600px; margin: 0 auto 2rem; font-size:1.125rem; color:#475569;">
+        From Brokenness to Bold Faith — sharing stories of redemption, healing, and God's grace.
+      </p>
+    </section>
 
-    <!-- Embedded latest video manually -->
-    <iframe src="https://www.youtube.com/embed/Bn5Cii7wgDA" allowfullscreen></iframe>
+    <!-- Latest Video -->
+    <section id="content">
+      <h2>📺 Latest from My YouTube Channel</h2>
+      <div class="video-wrapper" id="latestVideo">Loading video...</div>
+      <div class="subscribe-btn">
+        <!-- YouTube subscribe button -->
+        <div class="g-ytsubscribe" data-channelid="UCjhAWGLaxd124jxAdD_digQ" data-layout="default" data-count="default"></div>
+      </div>
+    </section>
 
-    <!-- Subscribe Button -->
-    <a class="subscribe-button"
-      href="https://www.youtube.com/channel/UCjhAWGLaxd124jxAdD_digQ?sub_confirmation=1"
-      target="_blank">Subscribe</a>
+    <!-- About Section -->
+    <section id="about" style="max-width: 700px; margin: 0 auto;">
+      <h2>About Shattered & Sent</h2>
+      <p style="color:#475569; font-size: 1.125rem; line-height:1.6;">
+        "Shattered & Sent" is a ministry dedicated to sharing the transformative power of God's love and grace. Even in brokenness, God uses us for His glorious purposes. We provide biblical insights, testimonies, and practical wisdom to encourage believers on their spiritual journey.
+      </p>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" style="max-width: 900px; margin: 3rem auto;">
+      <h2>Featured Resources</h2>
+      <ul style="list-style:none; padding:0; max-width: 700px; margin: auto;">
+        <li style="background:#eef2ff; padding:1rem; border-radius:0.75rem; margin-bottom:1rem;">
+          <strong>E-Book: Journey Through John</strong><br/>
+          A devotional guide exploring the Gospel of John, perfect for personal study or groups.
+        </li>
+        <li style="background:#dbeafe; padding:1rem; border-radius:0.75rem; margin-bottom:1rem;">
+          <strong>Podcast: Faith in Action Series</strong><br/>
+          Practical ways to live out faith daily, tackling challenges with biblical wisdom.
+        </li>
+        <li style="background:#c7d2fe; padding:1rem; border-radius:0.75rem;">
+          <strong>Study Guide: Overcoming Adversity</strong><br/>
+          Biblical perspectives and steps for navigating life’s challenges with God's promises.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="max-width: 700px; margin: 3rem auto 6rem;">
+      <h2>Get in Touch</h2>
+      <form style="display:flex; flex-direction: column; gap: 1rem;">
+        <input type="text" name="name" placeholder="Your Name" required style="padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #cbd5e1;" />
+        <input type="email" name="email" placeholder="Your Email" required style="padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #cbd5e1;" />
+        <textarea name="message" placeholder="Your Message" rows="5" required style="padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #cbd5e1;"></textarea>
+        <button type="submit" style="background-color:#4f46e5; color:white; padding: 0.75rem; border:none; border-radius: 0.5rem; font-weight:600; cursor:pointer;">Send Message</button>
+      </form>
+      <p style="margin-top:1rem; text-align:center; color:#64748b;">Or email us at: <a href="mailto:shattered.sent@gmail.com" style="color:#4f46e5;">shattered.sent@gmail.com</a></p>
+    </section>
   </main>
 
-  <footer>
-    &copy; 2025 Shattered Sent. All rights reserved.
+  <footer style="background:#334155; color:white; padding:1.5rem 0; text-align:center;">
+    <div>
+      <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-facebook-f"></i> Facebook</a> | 
+      <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-instagram"></i> Instagram</a> | 
+      <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-youtube"></i> YouTube</a>
+    </div>
+    <p style="margin-top: 1rem;">&copy; 2025 Shattered & Sent. All rights reserved.</p>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- Load YouTube Subscribe Button script -->
+  <script src="https://apis.google.com/js/platform.js"></script>
+
+  <!-- Latest Video fetch with YouTube API -->
+  <script>
+    const apiKey = 'AIzaSyBA0y6E7SltRstGwtSSX_X05Puran6YMUA';
+    const channelId = 'UCjhAWGLaxd124jxAdD_digQ';
+
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=1`)
+      .then(res => res.json())
+      .then(data => {
+        if(data.items && data.items.length > 0) {
+          const videoId = data.items[0].id.videoId;
+          const embedHtml = `
+            <iframe
+              src="https://www.youtube.com/embed/${videoId}"
+              title="Latest YouTube Video"
+              allowfullscreen
+            ></iframe>`;
+          document.getElementById('latestVideo').innerHTML = embedHtml;
+        } else {
+          document.getElementById('latestVideo').innerText = 'No videos found.';
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching latest video:', err);
+        document.getElementById('latestVideo').innerText = 'Failed to load video.';
+      });
+  </script>
+
+  <!-- Back to Top Button functionality -->
+  <script>
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 100) {
+        if(backToTopBtn.style.display !== 'flex') {
+          backToTopBtn.style.display = 'flex';
+          backToTopBtn.classList.add('animate-pulse-once');
+          setTimeout(() => backToTopBtn.classList.remove('animate-pulse-once'), 500);
+        }
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  </script>
 </body>
 </html>
