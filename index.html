@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shattered Sent: Finding Redemption After Failure</title>
-<meta name="description" content="A Christian platform focused on healing, forgiveness, and second chances after guilt, shame, or failure.">
-<meta name="keywords" content="Christian healing, redemption, forgiveness, guilt, shame, second chances, Shattered Sent">
-
+  <title>Shattered & Sent | Healing Through Redemption</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts - Inter -->
@@ -24,14 +21,12 @@
     header {
       background: white;
       box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
-      /* Removed flex-wrap from here, handled by Tailwind classes below */
       position: sticky;
       top: 0;
       z-index: 50;
       border-bottom-left-radius: 1rem;
       border-bottom-right-radius: 1rem;
     }
-    /* Removed header h1 style as it's replaced by the logo */
     nav ul {
       display: flex;
       gap: 2rem;
@@ -145,6 +140,62 @@
             max-width: 220px; /* Smaller max width on medium screens and up */
         }
     }
+
+    /* Message Box Styles */
+    .message-box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        text-align: center;
+        display: none; /* Hidden by default */
+        max-width: 90%;
+        width: 400px;
+    }
+    .message-box.show {
+        display: block;
+    }
+    .message-box h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #4f46e5;
+    }
+    .message-box p {
+        margin-bottom: 1.5rem;
+        color: #475569;
+    }
+    .message-box button {
+        background-color: #4f46e5;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .message-box button:hover {
+        background-color: #4338ca;
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none; /* Hidden by default */
+    }
+    .overlay.show {
+        display: block;
+    }
   </style>
 </head>
 <body>
@@ -153,7 +204,7 @@
     <!-- Logo integrated here -->
     <!-- IMPORTANT: Ensure 'Shattered.png' is in the correct path relative to your HTML file on GitHub! -->
     <div class="header-logo-container mb-4 sm:mb-0"> <!-- Added margin-bottom for mobile -->
-        <img src="Shattered.png" alt="Shattered & Sent Logo - From Brokenness to Bold Faith" class="shadow-sm" onerror="this.onerror=null;this.src='https://placehold.co/300x100/cccccc/333333?text=Logo+Not+Found';">
+        <img src="Shattered.png" alt="Shattered & Sent Logo - From Brokenness to Bold Faith" class="shadow-sm rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/300x100/cccccc/333333?text=Logo+Not+Found';">
     </div>
     <nav class="mt-4 sm:mt-0"> <!-- Added margin-top for mobile -->
       <ul>
@@ -168,17 +219,19 @@
 
   <main>
     <!-- Home / Hero -->
-    <section id="home" style="text-align:center; margin-bottom: 4rem;">
-      <h2>Welcome to Shattered & Sent</h2>
-      <p style="max-width:600px; margin: 0 auto 2rem; font-size:1.125rem; color:#475569;">
+    <section id="home" class="text-center mb-16">
+      <h2 class="text-5xl font-extrabold text-indigo-700 mb-6">Welcome to Shattered & Sent</h2>
+      <p class="max-w-xl mx-auto text-lg text-gray-600 leading-relaxed">
         From Brokenness to Bold Faith — sharing stories of redemption, healing, and God's grace.
       </p>
     </section>
 
     <!-- Latest Video -->
     <section id="content">
-      <h2>📺 Latest from My YouTube Channel</h2>
-      <div class="video-wrapper" id="latestVideo">Loading video...</div>
+      <h2 class="text-4xl font-bold text-center text-indigo-600 mb-8">📺 Latest from My YouTube Channel</h2>
+      <div class="video-wrapper" id="latestVideo">
+        <div class="flex items-center justify-center h-full text-gray-500">Loading video...</div>
+      </div>
       <div class="subscribe-btn">
         <!-- YouTube subscribe button -->
         <div class="g-ytsubscribe" data-channelid="UCjhAWGLaxd124jxAdD_digQ" data-layout="default" data-count="default"></div>
@@ -186,88 +239,164 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" style="max-width: 700px; margin: 0 auto;">
-      <h2>About Shattered & Sent</h2>
-      <p style="color:#475569; font-size: 1.125rem; line-height:1.6;">
+    <section id="about" class="max-w-3xl mx-auto mb-16">
+      <h2 class="text-4xl font-bold text-center text-indigo-600 mb-8">About Shattered & Sent</h2>
+      <p class="text-gray-700 text-lg leading-relaxed text-center">
         "Shattered & Sent" is a ministry dedicated to sharing the transformative power of God's love and grace. Even in brokenness, God uses us for His glorious purposes. We provide biblical insights, testimonies, and practical wisdom to encourage believers on their spiritual journey.
       </p>
     </section>
 
     <!-- Resources Section -->
-    <section id="resources" style="max-width: 900px; margin: 3rem auto;">
-      <h2>Featured Resources</h2>
-      <ul style="list-style:none; padding:0; max-width: 700px; margin: auto;">
-        <li style="background:#eef2ff; padding:1rem; border-radius:0.75rem; margin-bottom:1rem;">
-          <strong>E-Book: Journey Through John</strong><br/>
-          A devotional guide exploring the Gospel of John, perfect for personal study or groups.
+    <section id="resources" class="max-w-4xl mx-auto mb-16">
+      <h2 class="text-4xl font-bold text-center text-indigo-600 mb-8">Featured Resources</h2>
+      <ul class="list-none p-0 max-w-3xl mx-auto">
+        <li class="bg-indigo-50 p-6 rounded-xl shadow-md mb-4 transition transform hover:scale-105 hover:shadow-lg">
+          <strong class="text-xl text-indigo-700">E-Book: Journey Through John</strong><br/>
+          <p class="text-gray-700 mt-2">A devotional guide exploring the Gospel of John, perfect for personal study or groups.</p>
         </li>
-        <li style="background:#dbeafe; padding:1rem; border-radius:0.75rem; margin-bottom:1rem;">
-          <strong>Podcast: Faith in Action Series</strong><br/>
-          Practical ways to live out faith daily, tackling challenges with biblical wisdom.
+        <li class="bg-indigo-100 p-6 rounded-xl shadow-md mb-4 transition transform hover:scale-105 hover:shadow-lg">
+          <strong class="text-xl text-indigo-700">Podcast: Faith in Action Series</strong><br/>
+          <p class="text-gray-700 mt-2">Practical ways to live out faith daily, tackling challenges with biblical wisdom.</p>
         </li>
-        <li style="background:#c7d2fe; padding:1rem; border-radius:0.75rem;">
-          <strong>Study Guide: Overcoming Adversity</strong><br/>
-          Biblical perspectives and steps for navigating life’s challenges with God's promises.
+        <li class="bg-indigo-200 p-6 rounded-xl shadow-md transition transform hover:scale-105 hover:shadow-lg">
+          <strong class="text-xl text-indigo-700">Study Guide: Overcoming Adversity</strong><br/>
+          <p class="text-gray-700 mt-2">Biblical perspectives and steps for navigating life’s challenges with God's promises.</p>
         </li>
       </ul>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" style="max-width: 700px; margin: 3rem auto 6rem;">
-      <h2>Get in Touch</h2>
-      <form style="display:flex; flex-direction: column; gap: 1rem;">
-        <input type="text" name="name" placeholder="Your Name" required style="padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #cbd5e1;" />
-        <input type="email" name="email" placeholder="Your Email" required style="padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #cbd5e1;" />
-        <textarea name="message" placeholder="Your Message" rows="5" required style="padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #cbd5e1;"></textarea>
-        <button type="submit" style="background-color:#4f46e5; color:white; padding: 0.75rem; border:none; border-radius: 0.5rem; font-weight:600; cursor:pointer;">Send Message</button>
+    <section id="contact" class="max-w-3xl mx-auto mb-24">
+      <h2 class="text-4xl font-bold text-center text-indigo-600 mb-8">Get in Touch</h2>
+      <form id="contactForm" class="flex flex-col gap-4 bg-white p-8 rounded-xl shadow-lg">
+        <input type="text" name="name" placeholder="Your Name" required
+               class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" />
+        <input type="email" name="email" placeholder="Your Email" required
+               class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200" />
+        <textarea name="message" placeholder="Your Message" rows="6" required
+                  class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"></textarea>
+        <button type="submit"
+                class="bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200">
+          Send Message
+        </button>
       </form>
-      <p style="margin-top:1rem; text-align:center; color:#64748b;">Or email us at: <a href="mailto:shattered.sent@gmail.com" style="color:#4f46e5;">shattered.sent@gmail.com</a></p>
+      <p class="mt-4 text-center text-gray-600">Or email us directly at: <a href="mailto:shattered.sent@gmail.com" class="text-indigo-600 hover:underline">shattered.sent@gmail.com</a></p>
     </section>
   </main>
 
-  <footer style="background:#334155; color:white; padding:1.5rem 0; text-align:center;">
-    <div>
-      <!-- Removed Facebook and Instagram links -->
-      <a href="https://www.youtube.com/channel/UCjhAWGLaxd124jxAdD_digQ" style="color:#94a3b8; margin: 0 0.5rem;" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+  <footer class="bg-gray-800 text-white py-6 text-center rounded-t-xl">
+    <div class="flex justify-center items-center space-x-4 mb-4">
+      <a href="https://www.youtube.com/channel/UCjhAWGLaxd124jxAdD_digQ" class="text-gray-400 hover:text-white transition duration-300" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-youtube text-2xl"></i> <span class="sr-only">YouTube</span>
+      </a>
+      <!-- Add other social media links if desired -->
     </div>
-    <p style="margin-top: 1rem;">&copy; 2025 Shattered & Sent. All rights reserved.</p>
+    <p class="text-gray-400">&copy; 2025 Shattered & Sent. All rights reserved.</p>
   </footer>
 
   <!-- Back to Top Button -->
-  <button id="backToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+  <button id="backToTopBtn" title="Go to top" class="rounded-full shadow-lg hover:shadow-xl">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Message Box HTML -->
+  <div id="messageBox" class="message-box">
+      <h3 id="messageBoxTitle"></h3>
+      <p id="messageBoxContent"></p>
+      <button onclick="hideMessageBox()">OK</button>
+  </div>
+  <div id="overlay" class="overlay" onclick="hideMessageBox()"></div>
 
   <!-- Load YouTube Subscribe Button script -->
   <script src="https://apis.google.com/js/platform.js"></script>
 
-  <!-- Latest Video fetch with YouTube API -->
   <script>
-    const apiKey = 'AIzaSyBA0y6E7SltRstGwtSSX_X05Puran6YMUA';
-    const channelId = 'UCjhAWGLaxd124jxAdD_digQ';
+    // Function to show custom message box
+    function showMessageBox(title, message) {
+        document.getElementById('messageBoxTitle').innerText = title;
+        document.getElementById('messageBoxContent').innerText = message;
+        document.getElementById('messageBox').classList.add('show');
+        document.getElementById('overlay').classList.add('show');
+    }
 
-    fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=1`)
-      .then(res => res.json())
-      .then(data => {
-        if(data.items && data.items.length > 0) {
-          const videoId = data.items[0].id.videoId;
-          const embedHtml = `
-            <iframe
-             src="https://www.youtube.com/embed/${videoId}"
-              title="Latest YouTube Video"
-              allowfullscreen
-            ></iframe>`;
-          document.getElementById('latestVideo').innerHTML = embedHtml;
-        } else {
-          document.getElementById('latestVideo').innerText = 'No videos found.';
-        }
-      })
-      .catch(err => {
-        console.error('Error fetching latest video:', err);
-        document.getElementById('latestVideo').innerText = 'Failed to load video.';
-      });
-  </script>
+    // Function to hide custom message box
+    function hideMessageBox() {
+        document.getElementById('messageBox').classList.remove('show');
+        document.getElementById('overlay').classList.remove('show');
+    }
 
-  <!-- Back to Top Button functionality -->
-  <script>
+    // Base URL for your backend (assuming it's running locally on port 5000)
+    // IMPORTANT: If deploying, change this to your deployed backend URL (e.g., 'https://your-backend-app.herokuapp.com')
+    // Corrected to your PythonAnywhere URL
+    const BACKEND_URL = 'https://jshafer2017.pythonanywhere.com'; // Replace 'jshafer2017' with your actual PythonAnywhere username
+
+    // --- Latest Video fetch from Backend ---
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch(`${BACKEND_URL}/api/latest-video`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.videoId) {
+                    const embedHtml = `
+                        <iframe
+                            src="https://www.youtube.com/embed/${data.videoId}"
+                            title="Latest YouTube Video"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>`;
+                    document.getElementById('latestVideo').innerHTML = embedHtml;
+                } else {
+                    document.getElementById('latestVideo').innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">No videos found.</div>';
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching latest video:', err);
+                document.getElementById('latestVideo').innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">Failed to load video. Please try again later.</div>';
+                showMessageBox('Video Error', 'Could not load the latest YouTube video. Please check your internet connection or try again later.');
+            });
+    });
+
+    // --- Contact Form Submission ---
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(this);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        fetch(`${BACKEND_URL}/api/contact`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(res => {
+            if (!res.ok) {
+                // If response is not OK, parse error message from body
+                return res.json().then(errData => { throw new Error(errData.error || 'Unknown error occurred.'); });
+            }
+            return res.json();
+        })
+        .then(result => {
+            showMessageBox('Success!', result.message);
+            this.reset(); // Clear the form
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+            // Display error message in the custom message box
+            showMessageBox('Submission Failed', error.message || 'There was an issue sending your message. Please try again.');
+        });
+    });
+
+    // --- Back to Top Button functionality ---
     const backToTopBtn = document.getElementById('backToTopBtn');
 
     window.addEventListener('scroll', () => {
