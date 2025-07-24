@@ -32,12 +32,7 @@
       border-bottom-left-radius: 1rem;
       border-bottom-right-radius: 1rem;
     }
-    header h1 {
-      color: #4f46e5;
-      font-weight: 700;
-      font-size: 1.875rem;
-      margin-bottom: 0;
-    }
+    /* Removed header h1 style as it's replaced by the logo */
     nav ul {
       display: flex;
       gap: 2rem;
@@ -130,11 +125,40 @@
     .animate-pulse-once:hover {
       animation: pulse-once 0.5s ease-in-out;
     }
+    /* Styles for the logo in the header */
+    .header-logo-container {
+        max-width: 200px; /* Adjust max width as needed */
+        height: auto;
+    }
+    .header-logo-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem; /* Match other rounded elements */
+    }
+    /* Responsive adjustments for header logo */
+    @media (min-width: 640px) { /* sm breakpoint */
+        .header-logo-container {
+            max-width: 250px; /* Larger max width on small screens and up */
+        }
+    }
+    @media (min-width: 768px) { /* md breakpoint */
+        .header-logo-container {
+            max-width: 300px; /* Larger max width on medium screens and up */
+        }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Shattered & Sent</h1>
+    <!-- Logo integrated here -->
+    <div class="header-logo-container">
+        <img
+            src="Shattered.png" <!-- IMPORTANT: Path updated to .png! Ensure this path is correct relative to your HTML file on GitHub! -->
+            alt="Shattered & Sent Logo - From Brokenness to Bold Faith"
+            class="shadow-sm"
+            onerror="this.onerror=null;this.src='https://placehold.co/300x100/cccccc/333333?text=Logo+Not+Found';"
+        >
+    </div>
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
@@ -207,8 +231,8 @@
 
   <footer style="background:#334155; color:white; padding:1.5rem 0; text-align:center;">
     <div>
-      <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-facebook-f"></i> Facebook</a> | 
-      <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-instagram"></i> Instagram</a> | 
+      <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-facebook-f"></i> Facebook</a> |
+      <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-instagram"></i> Instagram</a> |
       <a href="#" style="color:#94a3b8; margin: 0 0.5rem;"><i class="fab fa-youtube"></i> YouTube</a>
     </div>
     <p style="margin-top: 1rem;">&copy; 2025 Shattered & Sent. All rights reserved.</p>
