@@ -300,3 +300,32 @@
     </script>
 </body>
 </html>
+<script>
+  // Get the button
+  const backToTopBtn = document.getElementById("backToTopBtn");
+
+  // Show/hide the button on scroll
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      if (backToTopBtn.style.display !== "flex") {
+        backToTopBtn.style.display = "flex";
+        
+        // Add pulse animation
+        backToTopBtn.classList.add("animate-pulse-once");
+        setTimeout(() => {
+          backToTopBtn.classList.remove("animate-pulse-once");
+        }, 500); // Matches animation duration
+      }
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  };
+
+  // Scroll to top on button click
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
