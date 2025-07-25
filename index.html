@@ -141,7 +141,7 @@
         }
     }
 
-    /* Message Box Styles */
+    /* Message Box Styles (for contact form and video error) */
     .message-box {
         position: fixed;
         top: 50%;
@@ -196,6 +196,99 @@
     .overlay.show {
         display: block;
     }
+
+    /* Blog Post Specific Styles */
+    .blog-post-card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+    }
+    .blog-post-card h3 { /* Changed from h2 to h3 for semantic hierarchy */
+        font-size: 1.75rem; /* Slightly smaller than section h2 */
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+    .blog-post-card .meta {
+        font-size: 0.9rem;
+        color: #64748b; /* Slate-500 */
+        margin-bottom: 1rem;
+    }
+    .blog-post-card p {
+        margin-bottom: 1rem;
+    }
+    .read-more-btn {
+        color: #4f46e5;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        cursor: pointer; /* Indicate it's clickable */
+    }
+    .read-more-btn:hover {
+        color: #3730a3; /* Indigo-800 */
+    }
+
+    /* Modal for Full Blog Post */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001; /* Above message box */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal.show {
+        opacity: 1;
+        visibility: visible;
+    }
+    .modal-content {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.75rem;
+        max-width: 800px;
+        max-height: 90vh; /* Limit height to prevent overflow */
+        overflow-y: auto; /* Enable scrolling for long content */
+        position: relative;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+    }
+    .modal.show .modal-content {
+        transform: translateY(0);
+    }
+    .modal-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #64748b;
+        transition: color 0.3s ease;
+    }
+    .modal-close-btn:hover {
+        color: #1e293b;
+    }
+    .modal-body h2 {
+        font-size: 2rem; /* Adjusted for modal content */
+        text-align: left;
+        margin-bottom: 1rem;
+        color: #1e293b;
+    }
+    .modal-body p {
+        margin-bottom: 1rem;
+    }
+
   </style>
 </head>
 <body>
@@ -211,6 +304,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#content">Content</a></li>
+        <li><a href="#blog-posts">Blog</a></li> <!-- NEW Blog Link -->
         <li><a href="#resources">Resources</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -244,6 +338,15 @@
       <p class="text-gray-700 text-lg leading-relaxed text-center">
         "Shattered & Sent" is a ministry dedicated to sharing the transformative power of God's love and grace. Even in brokenness, God uses us for His glorious purposes. We provide biblical insights, testimonies, and practical wisdom to encourage believers on their spiritual journey.
       </p>
+    </section>
+
+    <!-- NEW Blog Posts Section -->
+    <section id="blog-posts" class="max-w-4xl mx-auto mb-16">
+        <h2 class="text-4xl font-bold text-center text-indigo-600 mb-8">📝 Our Blog</h2>
+        <div id="blogPostsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Blog posts will be loaded here by JavaScript -->
+            <p class="col-span-full text-center text-gray-500">Loading blog posts...</p>
+        </div>
     </section>
 
     <!-- Resources Section -->
@@ -307,6 +410,16 @@
   </div>
   <div id="overlay" class="overlay" onclick="hideMessageBox()"></div>
 
+  <!-- Modal for Full Blog Post Content -->
+  <div id="blogPostModal" class="modal">
+      <div class="modal-content">
+          <button class="modal-close-btn" onclick="hideBlogPostModal()">&times;</button>
+          <div id="modalBlogPostContent" class="modal-body">
+              <!-- Full blog post content will be loaded here -->
+          </div>
+      </div>
+  </div>
+
   <!-- Load YouTube Subscribe Button script -->
   <script src="https://apis.google.com/js/platform.js"></script>
 
@@ -325,9 +438,20 @@
         document.getElementById('overlay').classList.remove('show');
     }
 
+    // Functions for Blog Post Modal
+    function showBlogPostModal() {
+        document.getElementById('blogPostModal').classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    }
+
+    function hideBlogPostModal() {
+        document.getElementById('blogPostModal').classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+        document.getElementById('modalBlogPostContent').innerHTML = ''; // Clear content
+    }
+
+
     // Base URL for your backend (assuming it's running locally on port 5000)
-    // IMPORTANT: If deploying, change this to your deployed backend URL (e.g., 'https://your-backend-app.herokuapp.com')
-    // Corrected to your PythonAnywhere URL
     const BACKEND_URL = 'https://jshafer2017.pythonanywhere.com'; // Replace 'jshafer2017' with your actual PythonAnywhere username
 
     // --- Latest Video fetch from Backend ---
@@ -359,11 +483,86 @@
                 document.getElementById('latestVideo').innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">Failed to load video. Please try again later.</div>';
                 showMessageBox('Video Error', 'Could not load the latest YouTube video. Please check your internet connection or try again later.');
             });
+
+        // --- Fetch Blog Posts on Load ---
+        fetchBlogPosts();
     });
 
-    // --- Contact Form Submission ---
+    async function fetchBlogPosts() {
+        const blogPostsContainer = document.getElementById('blogPostsContainer');
+        blogPostsContainer.innerHTML = '<p class="col-span-full text-center text-gray-500">Loading blog posts...</p>'; // Show loading message
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/blog-posts`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const posts = await response.json();
+
+            if (posts.length > 0) {
+                blogPostsContainer.innerHTML = ''; // Clear loading message
+                posts.forEach(post => {
+                    const postCard = document.createElement('div');
+                    postCard.classList.add('blog-post-card', 'col-span-1', 'flex', 'flex-col');
+                    postCard.innerHTML = `
+                        <h3 class="text-xl font-bold text-gray-800">${post.title}</h3>
+                        <p class="meta">Published on ${post.publish_date} by ${post.author}</p>
+                        <p class="flex-grow">${post.excerpt}</p>
+                        <a href="#" class="read-more-btn mt-auto" data-post-id="${post.id}">Read More &rarr;</a>
+                    `;
+                    blogPostsContainer.appendChild(postCard);
+                });
+
+                // Add event listeners to "Read More" buttons
+                document.querySelectorAll('.read-more-btn').forEach(button => {
+                    button.addEventListener('click', async (event) => {
+                        event.preventDefault();
+                        const postId = event.target.dataset.postId;
+                        await fetchSingleBlogPost(postId);
+                    });
+                });
+
+            } else {
+                blogPostsContainer.innerHTML = '<p class="col-span-full text-center text-gray-500">No blog posts found.</p>';
+            }
+
+        } catch (error) {
+            console.error('Error fetching blog posts:', error);
+            blogPostsContainer.innerHTML = '<p class="col-span-full text-center text-red-500">Failed to load blog posts. Please try again later.</p>';
+            showMessageBox('Blog Error', 'Could not load blog posts. Please check your internet connection or try again later.');
+        }
+    }
+
+    async function fetchSingleBlogPost(postId) {
+        const modalContentDiv = document.getElementById('modalBlogPostContent');
+        modalContentDiv.innerHTML = '<p class="text-center text-gray-500">Loading post...</p>';
+        showBlogPostModal(); // Show modal with loading message
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/blog-posts/${postId}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const post = await response.json();
+
+            if (post) {
+                modalContentDiv.innerHTML = `
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">${post.title}</h2>
+                    <p class="text-gray-600 text-sm mb-4">By ${post.author} on ${post.publish_date}</p>
+                    <div class="prose max-w-none">${post.content}</div> <!-- Use prose class for basic markdown styling if needed -->
+                `;
+            } else {
+                modalContentDiv.innerHTML = '<p class="text-center text-red-500">Blog post not found.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching single blog post:', error);
+            showMessageBox('Error', 'Could not load blog post details. Please try again.');
+        }
+    }
+
+    // --- Contact Form Submission (Existing) ---
     document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
         const formData = new FormData(this);
         const data = {};
@@ -380,23 +579,21 @@
         })
         .then(res => {
             if (!res.ok) {
-                // If response is not OK, parse error message from body
                 return res.json().then(errData => { throw new Error(errData.error || 'Unknown error occurred.'); });
             }
             return res.json();
         })
         .then(result => {
             showMessageBox('Success!', result.message);
-            this.reset(); // Clear the form
+            this.reset();
         })
         .catch(error => {
             console.error('Error submitting form:', error);
-            // Display error message in the custom message box
             showMessageBox('Submission Failed', error.message || 'There was an issue sending your message. Please try again.');
         });
     });
 
-    // --- Back to Top Button functionality ---
+    // --- Back to Top Button functionality (Existing) ---
     const backToTopBtn = document.getElementById('backToTopBtn');
 
     window.addEventListener('scroll', () => {
