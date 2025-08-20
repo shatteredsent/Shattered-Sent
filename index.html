@@ -542,17 +542,11 @@
                             
                             <div class="flex flex-col sm:flex-row gap-4">
                                 <button onclick="openStudyGuideModal(event)" 
-                                        onmousedown="console.log('Download button: Mouse Down');" 
-                                        ontouchstart="console.log('Download button: Touch Start');" 
-                                        ontouchend="console.log('Download button: Touch End');" 
                                         class="btn-primary text-lg flex-1">
                                     <i class="fas fa-download mr-2"></i>
                                     Download Free Guide
                                 </button>
                                 <button onclick="showStudyGuidePreview(event)" 
-                                        onmousedown="console.log('Preview button: Mouse Down');" 
-                                        ontouchstart="console.log('Preview button: Touch Start');" 
-                                        ontouchend="console.log('Preview button: Touch End');" 
                                         class="btn-secondary bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300 text-lg">
                                     <i class="fas fa-eye mr-2"></i>
                                     Preview
@@ -746,6 +740,30 @@
         </div>
     </div>
 
+    <!-- Blog Post Modal (New unified modal for blog posts) -->
+    <div id="blog-post-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 modal-overlay">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl modal-content-wrapper">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-start">
+                <div>
+                    <h2 id="blog-modal-title" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2"></h2>
+                    <div id="blog-modal-meta" class="text-sm text-gray-500"></div>
+                </div>
+                <button onclick="closeBlogModal()" class="text-gray-500 hover:text-gray-700 text-3xl ml-4 flex-shrink-0" aria-label="Close modal">&times;</button>
+            </div>
+            <div id="blog-modal-content" class="p-6 overflow-y-auto max-h-[70vh]">
+                <div class="prose prose-lg max-w-none text-gray-900 leading-relaxed">
+                    <!-- Blog post content will be loaded here -->
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-200 bg-gray-50 text-center">
+                <button onclick="closeBlogModal()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark transition duration-300 shadow-md">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         // Configuration - Update this to match your deployed backend URL
         const API_BASE_URL = 'https://jshafer2017.pythonanywhere.com';
@@ -808,12 +826,15 @@
             const blogContainer = document.getElementById('blog-container');
             const blogTitle = document.getElementById('blog-title'); 
             
-            console.log('Value of blogTitle element:', blogTitle); // Added for debugging
-            console.log('Attempting to load blog posts from:', `${API_BASE_URL}/api/blog-posts`);
+            // console.log('Value of blogTitle element:', blogTitle); // Removed for production
+            // console.log('Attempting to load blog posts from:', `${API_BASE_URL}/api/blog-posts`); // Removed for production
             
             try {
                 const response = await fetch(`${API_BASE_URL}/api/blog-posts`);
+                // console.log('Response status:', response.status, 'Response OK:', response.ok); // Removed for production
+                
                 const data = await response.json();
+                // console.log('Data received:', data); // Removed for production
 
                 if (response.ok && data.posts && data.posts.length > 0) {
                     // Store posts globally for modal access
@@ -834,10 +855,7 @@
                         
                         return `
                             <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover cursor-pointer" 
-                                 onclick="openBlogPost(${index})"
-                                 onmousedown="console.log('Blog card ${index}: Mouse Down');" 
-                                 ontouchstart="console.log('Blog card ${index}: Touch Start');" 
-                                 ontouchend="console.log('Blog card ${index}: Touch End');">
+                                 data-post-index="${index}"> <!-- Changed to data attribute for event delegation -->
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-indigo-600 mb-3">${post.title}</h3>
                                     <p class="text-gray-700 mb-4 leading-relaxed">${post.excerpt}</p>
@@ -881,7 +899,7 @@
             }
         }
 
-        // Open blog post in modal
+        // Open blog post in modal (now reuses a single modal structure)
         function openBlogPost(index) {
             const post = window.blogPosts[index];
             if (!post) return;
@@ -892,32 +910,15 @@
                 day: 'numeric'
             });
             
-            const modal = document.createElement('div');
-            // Using `modal-overlay` class for the outer div
-            modal.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 modal-overlay hidden'; 
-            modal.innerHTML = `
-                <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl modal-content-wrapper">
-                    <div class="p-6 border-b border-gray-200 flex justify-between items-start">
-                        <div>
-                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">${post.title}</h2>
-                            <div class="text-sm text-gray-500">By ${post.author} • ${publishDate}</div>
-                        </div>
-                        <button onclick="closeBlogModal()" class="text-gray-500 hover:text-gray-700 text-3xl ml-4 flex-shrink-0" aria-label="Close modal">&times;</button>
-                    </div>
-                    <div class="p-6 overflow-y-auto max-h-[70vh]">
-                        <div class="prose prose-lg max-w-none text-gray-900 leading-relaxed">
-                            ${post.content}
-                        </div>
-                    </div>
-                    <div class="p-6 border-t border-gray-200 bg-gray-50 text-center">
-                        <button onclick="closeBlogModal()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark transition duration-300 shadow-md">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            `;
+            const modal = document.getElementById('blog-post-modal');
+            const modalTitle = document.getElementById('blog-modal-title');
+            const modalMeta = document.getElementById('blog-modal-meta');
+            const modalContent = modal.querySelector('.prose'); // Select the prose div for content
+
+            modalTitle.textContent = post.title;
+            modalMeta.textContent = `By ${post.author} • ${publishDate}`;
+            modalContent.innerHTML = post.content; // Insert full content into the prose div
             
-            document.body.appendChild(modal);
             document.body.style.overflow = 'hidden';
 
             // Add smooth fade-in effect using new classes
@@ -927,17 +928,13 @@
                 modal.querySelector('.modal-content-wrapper').classList.add('is-active');
             }, 10);
             
-            // Close modal when clicking outside
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    closeBlogModal();
-                }
-            });
+            // Close modal when clicking outside (delegated to the modal overlay)
+            // No need to add new listener every time, as it's already on the modal-overlay itself.
         }
 
         // Close blog modal
         function closeBlogModal() {
-            const modal = document.querySelector('.fixed.inset-0.bg-black.modal-overlay');
+            const modal = document.getElementById('blog-post-modal'); // Get the unified blog post modal
             if (modal) {
                 const innerModal = modal.querySelector('.modal-content-wrapper');
                 
@@ -1041,9 +1038,7 @@
             }
 
             try {
-                showNotification('Preparing your download...', 'success');
-                
-                // Simulate API call delay
+                // Simulate API call delay for download preparation
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 // Generate and download the PDF
@@ -1052,7 +1047,7 @@
                 // Close modal
                 closeStudyGuideModal();
                 
-                // Show success message
+                // Show success message AFTER download is complete and modal is closed
                 showNotification('Study guide downloaded successfully! Check your downloads folder.', 'success');
                 
                 // Clear form
@@ -1260,6 +1255,7 @@
         document.addEventListener('click', function(event) {
             const studyModal = document.getElementById('study-guide-modal');
             const previewModal = document.getElementById('preview-modal');
+            const blogPostModal = document.getElementById('blog-post-modal');
             
             // Close study guide modal if visible and click is outside its content
             if (studyModal && !studyModal.classList.contains('hidden') && !studyModal.querySelector('.modal-content-wrapper').contains(event.target)) {
@@ -1269,6 +1265,10 @@
             if (previewModal && !previewModal.classList.contains('hidden') && !previewModal.querySelector('.modal-content-wrapper').contains(event.target)) {
                 closePreviewModal();
             }
+            // Close blog post modal if visible and click is outside its content
+            if (blogPostModal && !blogPostModal.classList.contains('hidden') && !blogPostModal.querySelector('.modal-content-wrapper').contains(event.target)) {
+                closeBlogModal();
+            }
         });
 
         // Close modals with Escape key
@@ -1276,6 +1276,7 @@
             if (event.key === 'Escape') {
                 closeStudyGuideModal();
                 closePreviewModal();
+                closeBlogModal(); // Close the new blog post modal
             }
         });
 
@@ -1295,8 +1296,8 @@
                 message: formData.get('message').trim()
             };
 
-            if (!data.name || !data.email) {
-                showNotification('Please fill in your name and email address.', 'error');
+            if (!data.name || !data.email || !data.message) {
+                showNotification('Please fill in all fields.', 'error');
                 return;
             }
 
@@ -1347,12 +1348,46 @@
             });
         }
 
+        // Event delegation for blog cards
+        function initBlogCardListeners() {
+            const blogContainer = document.getElementById('blog-container');
+            if (blogContainer) {
+                blogContainer.addEventListener('click', function(event) {
+                    const card = event.target.closest('.content-card[data-post-index]');
+                    if (card) {
+                        const index = parseInt(card.dataset.postIndex);
+                        // console.log(`Blog card ${index}: Click`); // Removed for production
+                        openBlogPost(index);
+                    }
+                });
+
+                // Optional: For logging touch events specifically, though click covers most cases
+                blogContainer.addEventListener('touchstart', function(event) {
+                    const card = event.target.closest('.content-card[data-post-index]');
+                    if (card) {
+                        const index = parseInt(card.dataset.postIndex);
+                        // console.log(`Blog card ${index}: Touch Start`); // Removed for production
+                    }
+                }, { passive: true }); // Use passive to avoid blocking scroll
+
+                blogContainer.addEventListener('touchend', function(event) {
+                    const card = event.target.closest('.content-card[data-post-index]');
+                    if (card) {
+                        const index = parseInt(card.dataset.postIndex);
+                        // console.log(`Blog card ${index}: Touch End`); // Removed for production
+                    }
+                }, { passive: true }); // Use passive to avoid blocking scroll
+            }
+        }
+
+
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
             loadLatestVideo();
             loadBlogPosts();
             document.getElementById('contact-form').addEventListener('submit', handleContactForm);
             initSmoothScrolling();
+            initBlogCardListeners(); // Initialize event delegation for blog cards
         });
     </script>
 </body>
