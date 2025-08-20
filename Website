@@ -3,76 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shattered & Sent</title>
+    <title>Shattered & Sent - Christian Ministry</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --text-gradient: linear-gradient(135deg, #4c63d2 0%, #7c3aed 50%, #db2777 100%);
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        
+        .text-gradient {
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+        
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.4s ease;
+        }
+        
+        .feature-card:hover {
+            background: linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
+            border-color: #6366f1;
+            box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.2);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            opacity: 0.6;
+        }
+        
         .notification {
             position: fixed;
             top: 20px;
             right: 20px;
             padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
+            border-radius: 12px;
             color: white;
             font-weight: 500;
             z-index: 1000;
             transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
         }
+        
         .notification.show {
             transform: translateX(0);
         }
+        
         .notification.success {
-            background-color: #10b981;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
+        
         .notification.error {
-            background-color: #ef4444;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         }
+        
         .youtube-embed {
             position: relative;
             width: 100%;
             height: 0;
             padding-bottom: 56.25%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
+        
         .youtube-embed iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 0.75rem;
         }
+        
         .loading-spinner {
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #6366f1;
+            border: 3px solid rgba(99, 102, 241, 0.2);
+            border-top: 3px solid #6366f1;
             border-radius: 50%;
             width: 2rem;
             height: 2rem;
             animation: spin 1s linear infinite;
         }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-elements::before {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 10%;
+            animation-delay: -2s;
+        }
+        
+        .floating-elements::after {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: 5%;
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5855f3 0%, #7c3aed 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.4);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #e2e8f0 50%, transparent 100%);
+            margin: 2rem 0;
+        }
+        
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg {
+                padding: 3rem 1rem;
+            }
         }
     </style>
 </head>
@@ -80,280 +245,308 @@
     <!-- Notification Container -->
     <div id="notification" class="notification"></div>
 
-    <!-- Header Section -->
-    <header class="bg-white shadow-md py-4 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center rounded-b-xl">
-        <div class="text-3xl font-bold text-indigo-700 mb-4 md:mb-0">Shattered & Sent</div>
-        <nav>
-            <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
-                <li><a href="#home" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out">Home</a></li>
-                <li><a href="#about" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out">About</a></li>
-                <li><a href="#content" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out">Content</a></li>
-                <li><a href="#contact" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Navigation Header -->
+    <header class="glass-effect sticky top-0 z-50 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-cross text-white text-lg"></i>
+                </div>
+                <div class="text-2xl md:text-3xl font-bold text-gradient heading-font">Shattered & Sent</div>
+            </div>
+            <nav>
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
+                    <li><a href="#home" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#content" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out relative group">
+                        Content
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#contact" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 transition-all group-hover:w-full"></span>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-24 px-6 md:px-12 flex items-center justify-center min-h-[500px] rounded-b-xl shadow-lg mt-4 mx-4 md:mx-auto max-w-7xl">
-        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://placehold.co/1920x1080/6366F1/ffffff?text=Inspiration');"></div>
-        <div class="relative z-10 text-center">
-            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
-                Transformed by Grace, Empowered for Purpose
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-                Discover inspiring Christian content that speaks to the heart, encourages growth, and equips you to live out your faith.
-            </p>
-            <a href="#content" class="inline-block bg-white text-indigo-700 hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
-                Explore Content
-            </a>
+    <section id="home" class="hero-bg text-white py-20 md:py-32 px-6 md:px-12 relative">
+        <div class="floating-elements"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold heading-font leading-tight mb-8 drop-shadow-2xl">
+                    Transformed by Grace,
+                    <span class="block text-yellow-300">Empowered for Purpose</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed max-w-3xl mx-auto">
+                    Discover inspiring Christian content that speaks to the heart, encourages spiritual growth, and equips you to live out your faith with boldness and purpose.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#content" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out relative overflow-hidden">
+                        <i class="fas fa-play-circle mr-2"></i>
+                        Explore Content
+                    </a>
+                    <a href="#about" class="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white hover:text-indigo-700 px-8 py-4 rounded-full text-lg font-semibold transition duration-300 ease-in-out">
+                        <i class="fas fa-heart mr-2"></i>
+                        Our Story
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center glass-effect p-6 rounded-2xl">
+                    <div class="stats-counter mb-2">500+</div>
+                    <p class="text-white/80 font-medium">Lives Transformed</p>
+                </div>
+                <div class="text-center glass-effect p-6 rounded-2xl">
+                    <div class="stats-counter mb-2">100+</div>
+                    <p class="text-white/80 font-medium">Video Messages</p>
+                </div>
+                <div class="text-center glass-effect p-6 rounded-2xl">
+                    <div class="stats-counter mb-2">50+</div>
+                    <p class="text-white/80 font-medium">Countries Reached</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Content Section -->
-    <section id="content" class="py-16 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mx-4 md:mx-auto max-w-7xl">
-        <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Our Latest Content</h2>
-        
-        <!-- Latest YouTube Video Section -->
-        <div class="mb-12">
-            <h3 class="text-2xl font-semibold text-indigo-600 mb-6 text-center">Latest YouTube Video</h3>
-            <div id="youtube-container" class="max-w-4xl mx-auto">
-                <div id="youtube-loading" class="flex justify-center items-center py-12">
-                    <div class="loading-spinner"></div>
-                    <span class="ml-3 text-gray-600">Loading latest video...</span>
+    <section id="content" class="py-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient heading-font mb-6">Our Latest Content</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Dive into transformative messages, powerful testimonies, and biblical insights designed to strengthen your faith journey.
+                </p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- Latest YouTube Video Section -->
+            <div class="mb-20">
+                <div class="text-center mb-12">
+                    <h3 class="text-3xl font-bold text-gray-800 heading-font mb-4">
+                        <i class="fab fa-youtube text-red-500 mr-3"></i>
+                        Latest Message
+                    </h3>
+                    <p class="text-gray-600 text-lg">Watch our most recent inspiring message</p>
                 </div>
-                <div id="youtube-video" class="youtube-embed hidden"></div>
-                <div id="youtube-error" class="text-center py-8 text-gray-500 hidden">
-                    <p>Unable to load the latest video at this time.</p>
+                <div id="youtube-container" class="max-w-5xl mx-auto">
+                    <div id="youtube-loading" class="flex justify-center items-center py-20 glass-effect rounded-2xl">
+                        <div class="loading-spinner"></div>
+                        <span class="ml-3 text-gray-600 text-lg">Loading latest message...</span>
+                    </div>
+                    <div id="youtube-video" class="youtube-embed hidden"></div>
+                    <div id="youtube-error" class="text-center py-12 glass-effect rounded-2xl hidden">
+                        <i class="fas fa-exclamation-triangle text-orange-500 text-3xl mb-4"></i>
+                        <p class="text-gray-600 text-lg">Unable to load the latest video at this time.</p>
+                        <p class="text-gray-500">Please check back later or visit our YouTube channel directly.</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Content Card 1 -->
-            <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Blog+Post" alt="Blog Post Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">The Power of Forgiveness</h3>
-                    <p class="text-gray-700 mb-4 line-clamp-3">
-                        Dive deep into the liberating power of forgiveness, understanding its biblical foundations and practical application in daily life. Learn how letting go can transform your heart and relationships.
-                    </p>
-                    <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium flex items-center">
-                        Read More
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Content Card 1 -->
+                <div class="feature-card rounded-2xl overflow-hidden hover-lift">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="The Power of Forgiveness" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Blog Post</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 heading-font mb-4">The Power of Forgiveness</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Dive deep into the liberating power of forgiveness, understanding its biblical foundations and practical application in daily life.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-semibold group">
+                            Read More
+                            <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <!-- Content Card 2 -->
-            <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                <img src="https://placehold.co/600x400/a78bfa/ffffff?text=Sermon" alt="Sermon Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">Sermon: Living a Sent Life</h3>
-                    <p class="text-gray-700 mb-4 line-clamp-3">
-                        Explore what it means to be "sent" by God into the world. This sermon challenges us to embrace our unique calling and serve others with love and compassion, reflecting Christ's light.
-                    </p>
-                    <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium flex items-center">
-                        Listen Now
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
+
+                <!-- Content Card 2 -->
+                <div class="feature-card rounded-2xl overflow-hidden hover-lift">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=600&h=400&fit=crop" alt="Living a Sent Life" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Sermon</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 heading-font mb-4">Living a Sent Life</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Explore what it means to be "sent" by God into the world. This sermon challenges us to embrace our unique calling.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-semibold group">
+                            Listen Now
+                            <i class="fas fa-play ml-2 transform group-hover:scale-110 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <!-- Content Card 3 -->
-            <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                <img src="https://placehold.co/600x400/c7d2fe/ffffff?text=Testimony" alt="Testimony Image" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold text-indigo-600 mb-3">Testimony: From Brokenness to Hope</h3>
-                    <p class="text-gray-700 mb-4 line-clamp-3">
-                        Read a powerful personal testimony of how God's grace can heal brokenness and bring profound hope. This story highlights the journey of faith and divine restoration.
-                    </p>
-                    <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium flex items-center">
-                        Read Story
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </a>
+
+                <!-- Content Card 3 -->
+                <div class="feature-card rounded-2xl overflow-hidden hover-lift">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop" alt="From Brokenness to Hope" class="w-full h-56 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Testimony</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 heading-font mb-4">From Brokenness to Hope</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Read a powerful testimony of how God's grace can heal brokenness and bring profound hope and restoration.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-semibold group">
+                            Read Story
+                            <i class="fas fa-heart ml-2 transform group-hover:scale-110 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 px-6 md:px-12 bg-indigo-50 rounded-xl shadow-lg mt-8 mx-4 md:mx-auto max-w-7xl">
-        <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">About Shattered & Sent</h2>
-        <div class="max-w-4xl mx-auto text-center">
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                "Shattered & Sent" is a ministry dedicated to sharing the transformative power of God's love and grace. We believe that even in our brokenness, God can use us for His glorious purposes. Our aim is to provide biblical insights, heartfelt testimonies, and practical wisdom to encourage believers on their spiritual journey.
-            </p>
-            <p class="text-lg text-gray-700 leading-relaxed">
-                Through various forms of content, we seek to inspire, equip, and empower individuals to live out their faith boldly, reflecting Christ's light in every sphere of influence. Join us as we explore what it means to be both "shattered" by life's experiences and "sent" with a divine mission.
-            </p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mb-8 mx-4 md:mx-auto max-w-7xl">
-        <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Get in Touch</h2>
-        <div class="max-w-2xl mx-auto">
-            <form id="contact-form" class="space-y-6">
+    <section id="about" class="py-20 px-6 md:px-12 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
-                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 ease-in-out" placeholder="Your Name">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gradient heading-font mb-8">About Shattered & Sent</h2>
+                    <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                        <p>
+                            "Shattered & Sent" is more than a ministry—it's a movement of hope and transformation. We believe that even in our deepest brokenness, God has a beautiful plan to use us for His glorious purposes.
+                        </p>
+                        <p>
+                            Our mission is to provide biblical insights, heartfelt testimonies, and practical wisdom that encourages believers to embrace their journey of faith with courage and authenticity.
+                        </p>
+                        <p>
+                            Through various forms of content, we seek to inspire, equip, and empower individuals to live out their faith boldly, reflecting Christ's light in every sphere of influence.
+                        </p>
+                    </div>
+                    <div class="mt-8">
+                        <a href="#contact" class="btn-primary text-white px-8 py-4 rounded-full font-semibold inline-flex items-center hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-envelope mr-2"></i>
+                            Connect With Us
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Email</label>
-                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 ease-in-out" placeholder="you@example.com">
+                <div class="relative">
+                    <div class="glass-effect rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop" alt="Ministry" class="rounded-2xl w-full h-96 object-cover">
+                        <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl p-6 shadow-xl">
+                            <div class="text-3xl font-bold text-indigo-600 heading-font">"Shattered but not defeated"</div>
+                            <p class="text-gray-600 mt-2">- Our Core Belief</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for="message" class="block text-lg font-medium text-gray-700 mb-2">Message</label>
-                    <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 ease-in-out" placeholder="Your message..."></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" id="submit-btn" class="inline-block bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
-                        <span id="submit-text">Send Message</span>
-                        <div id="submit-spinner" class="loading-spinner mx-auto hidden" style="width: 1.25rem; height: 1.25rem;"></div>
-                    </button>
-                </div>
-            </form>
-            <div class="mt-12 text-center text-gray-600">
-                <p class="mb-2">You can also reach us at:</p>
-                <p class="text-xl font-semibold text-indigo-700">info@shatteredandsent.org</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 text-center rounded-t-xl">
-        <div class="mb-4">
-            <a href="#" class="text-gray-400 hover:text-white mx-3 transition duration-300 ease-in-out">Facebook</a>
-            <a href="#" class="text-gray-400 hover:text-white mx-3 transition duration-300 ease-in-out">Instagram</a>
-            <a href="#" class="text-gray-400 hover:text-white mx-3 transition duration-300 ease-in-out">YouTube</a>
-        </div>
-        <p class="text-gray-400">&copy; 2025 Shattered & Sent. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Configuration - Update this to match your Flask backend URL
-        const API_BASE_URL = 'http://localhost:5000';
-
-        // Utility function to show notifications
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
-
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-
-        // Load latest YouTube video
-        async function loadLatestVideo() {
-            const loadingEl = document.getElementById('youtube-loading');
-            const videoEl = document.getElementById('youtube-video');
-            const errorEl = document.getElementById('youtube-error');
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/latest-video`);
-                const data = await response.json();
-
-                if (response.ok && data.videoId) {
-                    // Hide loading, show video
-                    loadingEl.classList.add('hidden');
-                    videoEl.innerHTML = `
-                        <iframe 
-                            src="https://www.youtube.com/embed/${data.videoId}" 
-                            title="Latest Video" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    `;
-                    videoEl.classList.remove('hidden');
-                } else {
-                    throw new Error(data.error || 'Failed to load video');
-                }
-            } catch (error) {
-                console.error('Error loading video:', error);
-                loadingEl.classList.add('hidden');
-                errorEl.classList.remove('hidden');
-            }
-        }
-
-        // Handle contact form submission
-        async function handleContactForm(event) {
-            event.preventDefault();
-
-            const form = document.getElementById('contact-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const submitText = document.getElementById('submit-text');
-            const submitSpinner = document.getElementById('submit-spinner');
-
-            // Get form data
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-
-            // Show loading state
-            submitBtn.disabled = true;
-            submitText.classList.add('hidden');
-            submitSpinner.classList.remove('hidden');
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/contact`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    showNotification(result.message || 'Message sent successfully!', 'success');
-                    form.reset();
-                } else {
-                    throw new Error(result.error || 'Failed to send message');
-                }
-            } catch (error) {
-                console.error('Error sending message:', error);
-                showNotification(error.message || 'Failed to send message. Please try again.', 'error');
-            } finally {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitText.classList.remove('hidden');
-                submitSpinner.classList.add('hidden');
-            }
-        }
-
-        // Smooth scrolling for navigation links
-        function initSmoothScrolling() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load latest video
-            loadLatestVideo();
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gradient heading-font mb-6">Get in Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                </p>
+                <div class="section-divider"></div>
+            </div>
             
-            // Set up contact form
-            document.getElementById('contact-form').addEventListener('submit', handleContactForm);
-            
-            // Initialize smooth scrolling
-            initSmoothScrolling();
-        });
-    </script>
-</body>
-</html>
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Contact Form -->
+                <div class="glass-effect rounded-3xl p-8 md:p-12 hover-lift">
+                    <form id="contact-form" class="space-y-8">
+                        <div>
+                            <label for="name" class="block text-lg font-semibold text-gray-700 mb-3">
+                                <i class="fas fa-user mr-2 text-indigo-500"></i>
+                                Full Name
+                            </label>
+                            <input type="text" id="name" name="name" required 
+                                class="w-full px-6 py-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 text-lg" 
+                                placeholder="Enter your full name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-semibold text-gray-700 mb-3">
+                                <i class="fas fa-envelope mr-2 text-indigo-500"></i>
+                                Email Address
+                            </label>
+                            <input type="email" id="email" name="email" required 
+                                class="w-full px-6 py-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 text-lg" 
+                                placeholder="you@example.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-semibold text-gray-700 mb-3">
+                                <i class="fas fa-comment mr-2 text-indigo-500"></i>
+                                Your Message
+                            </label>
+                            <textarea id="message" name="message" rows="6" required 
+                                class="w-full px-6 py-4 border-2 border-gray-200 rounded-xl shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 text-lg resize-none" 
+                                placeholder="Share your thoughts, prayer requests, or questions with us..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="submit-btn" 
+                                class="btn-primary text-white px-12 py-4 rounded-full text-lg font-bold shadow-2xl transform hover:scale-105 transition duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none inline-flex items-center">
+                                <span id="submit-text">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Send Message
+                                </span>
+                                <div id="submit-spinner" class="loading-spinner mx-auto hidden" style="width: 1.25rem; height: 1.25rem;"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <div class="glass-effect rounded-3xl p-8 hover-lift">
+                        <h3 class="text-2xl font-bold text-gray-800 heading-font mb-6">
+                            <i class="fas fa-map-marker-alt mr-3 text-indigo-500"></i>
+                            Connect With Us
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Email Us</p>
+                                    <p class="text-indigo-600 font-semibold">info@shatteredandsent.org</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-heart text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Prayer Requests</p>
+                                    <p class="text-gray-600">We're here to pray with you</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">Response Time</p>
+                                    <p class="text-gray-600">Within 24 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-3xl p-8 hover-lift">
+                        <h3 class="text-2xl font-bold text-gray
