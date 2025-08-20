@@ -1,4 +1,265 @@
-<!DOCTYPE html>
+        // Study Guide Modal Functions
+        function openStudyGuideModal() {
+            document.getElementById('study-guide-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStudyGuideModal() {
+            document.getElementById('study-guide-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showStudyGuidePreview() {
+            document.getElementById('preview-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePreviewModal() {
+            document.getElementById('preview-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Handle study guide download
+        async function downloadStudyGuide() {
+            const form = document.getElementById('download-form');
+            const formData = new FormData(form);
+            
+            const data = {
+                name: formData.get('name').trim(),
+                email: formData.get('email').trim(),
+                intended_use: formData.get('intended_use') || 'not specified',
+                newsletter: formData.get('newsletter') === 'on'
+            };
+
+            // Basic validation
+            if (!data.name || !data.email) {
+                showNotification('Please fill in your name and email address.', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            try {
+                // In a real implementation, you would send this data to your backend
+                // For now, we'll simulate the download process
+                showNotification('Preparing your download...', 'success');
+                
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Generate and download the PDF
+                generateStudyGuidePDF(data.name);
+                
+                // Close modal
+                closeStudyGuideModal();
+                
+                // Show success message
+                showNotification('Study guide downloaded successfully! Check your downloads folder.', 'success');
+                
+                // Clear form
+                form.reset();
+                
+            } catch (error) {
+                console.error('Error downloading study guide:', error);
+                showNotification('Failed to download study guide. Please try again.', 'error');
+            }
+        }
+
+        // Generate PDF function (simplified version)
+        function generateStudyGuidePDF(userName) {
+            const studyGuideContent = `
+# Overcoming Adversity: A 7-Session Study Guide
+## Shattered & Sent Ministry
+
+*Downloaded by: ${userName}*
+*Date: ${new Date().toLocaleDateString()}*
+
+---
+
+## Session 1: Understanding Adversity — God's Classroom for Growth
+
+**Scripture Foundation:** Romans 5:3–5; James 1:2–4
+
+**Key Teaching:** Adversity is not meaningless—it is a classroom where God develops perseverance, character, and hope.
+
+**Teaching Points:**
+1. Adversity comes in many forms (loss, sin, failure, injustice, hardship).
+2. God does not waste suffering; He uses it to shape us into Christlikeness.
+3. Trials invite us to trust God more deeply.
+
+**Discussion Questions:**
+• When you face adversity, what is your first reaction?
+• How have past trials shaped your faith?
+• What do you think it means that suffering produces hope?
+
+**Application Challenge:** Journal one trial you are currently experiencing. Write down what God may be teaching you through it.
+
+---
+
+## Session 2: Cultivating a Growth Mindset Rooted in God's Promises
+
+**Scripture Foundation:** Philippians 4:8; Hebrews 13:5
+
+**Key Teaching:** Faith reframes challenges, turning obstacles into opportunities for growth.
+
+**Teaching Points:**
+1. A growth mindset believes hardship is an opportunity to mature.
+2. God's promises remind us we are not abandoned in adversity.
+3. Replacing negative self-talk with biblical truth renews our minds.
+
+**Discussion Questions:**
+• What lies do you tend to believe in hardship?
+• What promises from Scripture combat those lies?
+• How does focusing on "whatever is true, noble, right, pure" (Philippians 4:8) change perspective?
+
+**Practical Exercise:** Write down one negative thought you often struggle with. Next to it, write the scriptural truth that replaces it.
+
+---
+
+## Session 3: Building Resilience Through Daily Habits
+
+**Scripture Foundation:** 1 Thessalonians 5:16–18; Psalm 46:1
+
+**Key Teaching:** Resilience isn't built overnight—it's developed through faithful, daily practices rooted in God.
+
+**Teaching Points:**
+1. Small, consistent steps forward build strength.
+2. Daily disciplines of prayer, Scripture reading, and worship anchor us.
+3. God is our refuge and strength in chaos.
+
+**Discussion Questions:**
+• What daily habits keep you grounded in your faith?
+• How does prayer or worship help you in difficult seasons?
+• What habit can you begin this week to build resilience?
+
+**Application Challenge:** Create a "Resilience Routine"—a short daily plan (5–10 minutes) of prayer, Scripture, and gratitude.
+
+---
+
+## Session 4: Leaning Into Community & Biblical Support Networks
+
+**Scripture Foundation:** Galatians 6:2; Hebrews 10:24–25
+
+**Key Teaching:** God designed us to carry each other's burdens and to encourage one another.
+
+**Teaching Points:**
+1. Resilience grows in community, not isolation.
+2. Sharing struggles invites empathy and prayer.
+3. Encouragement is a vital tool for overcoming hardship.
+
+**Discussion Questions:**
+• Who in your life encourages you when you're struggling?
+• Why is it difficult to be vulnerable about adversity?
+• How can you be an encourager for others?
+
+**Group Activity:** Pair up and share one struggle you're facing. Pray for each other using a specific Scripture promise.
+
+---
+
+## Session 5: Finding Silver Linings in Hardship
+
+**Scripture Foundation:** 2 Corinthians 12:9–10; Genesis 50:20
+
+**Key Teaching:** Even in pain, God brings beauty, strength, and purpose.
+
+**Teaching Points:**
+1. Hardship develops compassion, humility, and empathy.
+2. God's power is made perfect in weakness.
+3. What others meant for harm, God can turn to good.
+
+**Discussion Questions:**
+• What is one way a past hardship has shaped you for the better?
+• How does Paul's statement "when I am weak, then I am strong" speak to your own life?
+• Can you identify a silver lining in your current struggle?
+
+**Practical Exercise:** Write a short testimony of how God brought good out of a past adversity. Share it with a trusted friend or group.
+
+---
+
+## Session 6: Standing Firm With Hope & Perseverance
+
+**Scripture Foundation:** Isaiah 40:31; Hebrews 12:1–2
+
+**Key Teaching:** Hope sustains us in adversity, and perseverance strengthens our faith for the long journey.
+
+**Teaching Points:**
+1. Hope is not wishful thinking—it's confidence in God's promises.
+2. The Christian life is a marathon, not a sprint.
+3. Fixing our eyes on Jesus sustains us through trials.
+
+**Discussion Questions:**
+• What gives you hope in your darkest seasons?
+• What does it mean to "run with perseverance the race marked out for us"?
+• How can you keep your focus on Jesus amid adversity?
+
+**Journaling Prompt:** Write a compassionate pep talk to yourself. Encourage yourself with Scripture and remind yourself of God's faithfulness.
+
+---
+
+## Session 7: Reflection, Renewal, & Testimony
+
+**Scripture Foundation:** Lamentations 3:21–23; Psalm 77:11–12
+
+**Key Teaching:** Reflection helps us recognize God's faithfulness and strengthens us for the future.
+
+**Teaching Points:**
+1. Journaling and prayer bring clarity and healing.
+2. Remembering past victories fuels future resilience.
+3. Testimonies encourage both ourselves and others.
+
+**Discussion Questions:**
+• How has God shown Himself faithful in your past?
+• Why is it important to remember and record His works?
+• How can your story encourage others in their adversity?
+
+**Final Activity:** Write your "Adversity Testimony"—a brief summary of one hardship, how God carried you, and what you learned. Share it with your group or publish it as encouragement for others.
+
+---
+
+*This study guide is a gift from Shattered & Sent Ministry. 
+For more resources, visit us online or contact us at shattered.sent@gmail.com*
+
+*"We know that in all things God works for the good of those who love him, 
+who have been called according to his purpose." - Romans 8:28*
+`;
+
+            // Create and download the file
+            const blob = new Blob([studyGuideContent], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Overcoming-Adversity-Study-Guide-Shattered-and-Sent.txt';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const studyModal = document.getElementById('study-guide-modal');
+            const previewModal = document.getElementById('preview-modal');
+            
+            if (event.target === studyModal) {
+                closeStudyGuideModal();
+            }
+            if (event.target === previewModal) {
+                closePreviewModal();
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeStudyGuideModal();
+                closePreviewModal();
+            }
+        });<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -454,11 +715,83 @@
         </div>
     </section>
 
+    <!-- Featured Study Guide Section -->
+    <section class="section-padding bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">Featured Study Guide</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Download our comprehensive curriculum for overcoming adversity through biblical wisdom
+                </p>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- Main Study Guide Card -->
+            <div class="max-w-5xl mx-auto mb-16">
+                <div class="content-card rounded-3xl overflow-hidden card-hover bg-gradient-to-br from-white to-indigo-50">
+                    <div class="grid lg:grid-cols-2 gap-0">
+                        <div class="image-overlay">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop&crop=face" alt="Overcoming Adversity Study Guide" class="w-full h-full object-cover min-h-[300px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/80 to-purple-600/80 flex items-center justify-center">
+                                <div class="text-center text-white p-8">
+                                    <i class="fas fa-book-open text-6xl mb-4 opacity-90"></i>
+                                    <h3 class="text-3xl font-bold heading-font">7-Session Study</h3>
+                                    <p class="text-xl opacity-90">Downloadable PDF Guide</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 lg:p-12">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg mr-4">New Release</span>
+                                <span class="text-gray-500 text-sm">✨ Free Download</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-800 heading-font mb-6">Overcoming Adversity</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                                A comprehensive 7-session curriculum designed to help believers move from brokenness to bold faith. Perfect for personal study, small groups, or church ministries.
+                            </p>
+                            
+                            <!-- Study Guide Features -->
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>7 in-depth sessions with Scripture foundations</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Discussion questions for group study</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Practical exercises and applications</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Journaling prompts and reflection activities</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="openStudyGuideModal()" class="btn-primary text-lg flex-1">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Free Guide
+                                </button>
+                                <button onclick="showStudyGuidePreview()" class="btn-secondary bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300 text-lg">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Content Grid -->
     <section class="section-padding bg-gray-50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">Featured Content</h2>
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">More Resources</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Explore our collection of biblical insights, practical teachings, and inspiring testimonies
                 </p>
@@ -722,6 +1055,147 @@
             </div>
         </div>
     </footer>
+
+    <!-- Study Guide Modal -->
+    <div id="study-guide-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="p-8 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-3xl font-bold gradient-text heading-font">Download Study Guide</h3>
+                    <button onclick="closeStudyGuideModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-8 overflow-y-auto max-h-[60vh]">
+                <div class="mb-6">
+                    <h4 class="text-2xl font-bold text-gray-800 mb-4">Overcoming Adversity: A 7-Session Study Guide</h4>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        This comprehensive curriculum is designed to help believers move from brokenness to bold faith when facing adversity. 
+                        It blends biblical truth, reflective practices, and practical strategies for personal study, small groups, or church ministries.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h5 class="font-bold text-gray-800 mb-3">What's Included:</h5>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 7 Complete Sessions</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Scripture Foundations</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Discussion Questions</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Practical Exercises</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Journaling Prompts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="font-bold text-gray-800 mb-3">Perfect For:</h5>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-users text-blue-500 mr-2"></i> Small Group Study</li>
+                            <li class="flex items-center"><i class="fas fa-user text-blue-500 mr-2"></i> Personal Devotions</li>
+                            <li class="flex items-center"><i class="fas fa-church text-blue-500 mr-2"></i> Church Ministries</li>
+                            <li class="flex items-center"><i class="fas fa-heart text-blue-500 mr-2"></i> Support Groups</li>
+                            <li class="flex items-center"><i class="fas fa-book text-blue-500 mr-2"></i> Bible Classes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <form id="download-form" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="download-name" class="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
+                            <input type="text" id="download-name" name="name" required class="form-input">
+                        </div>
+                        <div>
+                            <label for="download-email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="download-email" name="email" required class="form-input">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="intended-use" class="block text-sm font-semibold text-gray-700 mb-2">How will you use this guide? (Optional)</label>
+                        <select id="intended-use" name="intended_use" class="form-input">
+                            <option value="">Select an option</option>
+                            <option value="personal">Personal Study</option>
+                            <option value="small-group">Small Group</option>
+                            <option value="church">Church Ministry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="flex items-start">
+                        <input type="checkbox" id="newsletter-signup" name="newsletter" class="mt-1 mr-3 text-indigo-600">
+                        <label for="newsletter-signup" class="text-sm text-gray-600">
+                            I'd like to receive encouraging emails with new resources and updates from Shattered & Sent
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="p-8 border-t border-gray-200 bg-gray-50">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="downloadStudyGuide()" class="btn-primary flex-1 text-lg">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Free PDF
+                    </button>
+                    <button onclick="closeStudyGuideModal()" class="btn-secondary bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-300 flex-1 text-lg">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Guide Preview Modal -->
+    <div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
+            <div class="p-8 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-3xl font-bold gradient-text heading-font">Study Guide Preview</h3>
+                    <button onclick="closePreviewModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-8 overflow-y-auto max-h-[70vh]">
+                <div class="prose prose-lg max-w-none">
+                    <h2 class="text-2xl font-bold gradient-text heading-font mb-4">Session 1: Understanding Adversity — God's Classroom for Growth</h2>
+                    <p class="text-gray-600 mb-4"><strong>Scripture Foundation:</strong> Romans 5:3–5; James 1:2–4</p>
+                    <p class="text-gray-700 mb-6"><strong>Key Teaching:</strong> Adversity is not meaningless—it is a classroom where God develops perseverance, character, and hope.</p>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 mb-3">Teaching Points:</h4>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700 mb-6">
+                        <li>Adversity comes in many forms (loss, sin, failure, injustice, hardship).</li>
+                        <li>God does not waste suffering; He uses it to shape us into Christlikeness.</li>
+                        <li>Trials invite us to trust God more deeply.</li>
+                    </ol>
+                    
+                    <h4 class="text-lg font-bold text-gray-800 mb-3">Discussion Questions:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                        <li>When you face adversity, what is your first reaction?</li>
+                        <li>How have past trials shaped your faith?</li>
+                        <li>What do you think it means that suffering produces hope?</li>
+                    </ul>
+                    
+                    <div class="bg-indigo-50 p-6 rounded-xl mb-6">
+                        <h4 class="text-lg font-bold text-indigo-800 mb-2">Application Challenge:</h4>
+                        <p class="text-indigo-700">Journal one trial you are currently experiencing. Write down what God may be teaching you through it.</p>
+                    </div>
+                    
+                    <div class="text-center text-gray-500 text-sm border-t pt-4">
+                        <p>This is a preview of Session 1. The complete guide includes 6 additional sessions with comprehensive teaching materials.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-8 border-t border-gray-200 bg-gray-50">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="closePreviewModal(); openStudyGuideModal();" class="btn-primary flex-1 text-lg">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Complete Guide
+                    </button>
+                    <button onclick="closePreviewModal()" class="btn-secondary bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-300 flex-1 text-lg">
+                        Close Preview
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Configuration - Update this to match your Flask backend URL
