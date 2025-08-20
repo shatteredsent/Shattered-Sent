@@ -3,37 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shattered & Sent</title>
-    <meta name="description" content="From Brokenness to Bold Faith — sharing stories of redemption, healing, and God's grace.">
+    <title>Shattered & Sent - Transformed by Grace, Empowered for Purpose</title>
+    <meta name="description" content="Christian ministry sharing stories of redemption, healing, and God's grace. Biblical insights, testimonies, and practical wisdom for your spiritual journey.">
+    <meta name="keywords" content="Christian ministry, faith, redemption, Bible study, testimonies, spiritual growth">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --background: #fafafa;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #fafafa 0%, #f3f4f6 100%);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
         }
         
         .glass-effect {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 58, 237, 0.2) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
         }
         
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
         }
         
         .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .content-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .content-card:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(79, 70, 229, 0.4);
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
         
         .youtube-embed {
@@ -41,9 +169,9 @@
             width: 100%;
             height: 0;
             padding-bottom: 56.25%;
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
         .youtube-embed iframe {
@@ -55,8 +183,8 @@
         }
         
         .loading-spinner {
-            border: 3px solid #e2e8f0;
-            border-top: 3px solid #6366f1;
+            border: 3px solid rgba(79, 70, 229, 0.2);
+            border-top: 3px solid var(--primary);
             border-radius: 50%;
             width: 2rem;
             height: 2rem;
@@ -73,13 +201,14 @@
             top: 20px;
             right: 20px;
             padding: 1rem 1.5rem;
-            border-radius: 8px;
+            border-radius: 12px;
             color: white;
-            font-weight: 500;
+            font-weight: 600;
             z-index: 1000;
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
         }
         
         .notification.show {
@@ -93,411 +222,343 @@
         .notification.error {
             background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
         }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+            margin: 3rem auto;
+            max-width: 200px;
+        }
+        
+        .stats-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stats-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        
+        .image-overlay {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        
+        .image-overlay img {
+            transition: transform 0.5s ease;
+        }
+        
+        .image-overlay:hover img {
+            transform: scale(1.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .section-padding {
+            padding: 5rem 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-section {
+                padding: 4rem 1rem;
+            }
+            
+            .stats-number {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+        }
     </style>
 </head>
-<body class="text-gray-800">
-    <div id="notification" class="notification"></div>
+<body>
+    <!-- Notification Container -->
+    <div id="notification" class="notification">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle mr-2"></i>
+            <span id="notification-text"></span>
+        </div>
+    </div>
 
-    <header class="glass-effect py-4 px-6 md:px-12">
+    <!-- Header -->
+    <header class="glass-effect sticky top-0 z-50 py-4 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <!-- Logo Section - Updated to include the uploaded image -->
-            <div class="flex items-center mb-4 md:mb-0">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
                 <img src="Shattered Thumbnail.jpg" alt="Shattered & Sent Logo" class="h-16 w-auto mr-3 rounded-lg shadow-md">
-                <div class="text-3xl font-bold text-indigo-700">Shattered & Sent</div>
+                <div>
+                    <div class="text-2xl md:text-3xl font-bold gradient-text heading-font">Shattered & Sent</div>
+                    <div class="text-sm text-gray-500 hidden md:block">Transformed by Grace</div>
+                </div>
             </div>
             <nav>
                 <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
-                    <li><a href="#home" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Home</a></li>
-                    <li><a href="#about" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300">About</a></li>
-                    <li><a href="#content" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Content</a></li>
-                    <li><a href="#contact" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Contact</a></li>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#content" class="nav-link">Content</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg text-white py-20 px-6 md:px-12 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                Transformed by Grace, Empowered for Purpose
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90">
-                From Brokenness to Bold Faith — sharing stories of redemption, healing, and God's grace.
-            </p>
+    <section id="home" class="hero-section text-white section-padding relative">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-5xl mx-auto">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold heading-font leading-tight mb-8">
+                    Transformed by Grace,
+                    <span class="block text-yellow-300 mt-2">Empowered for Purpose</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed max-w-4xl mx-auto">
+                    From brokenness to bold faith — sharing stories of redemption, healing, and God's transformative grace. 
+                    Discover biblical insights, powerful testimonies, and practical wisdom for your spiritual journey.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                    <a href="#content" class="btn-primary text-lg">
+                        <i class="fas fa-play-circle"></i>
+                        Watch Latest Message
+                    </a>
+                    <a href="#about" class="btn-secondary text-lg">
+                        <i class="fas fa-heart"></i>
+                        Our Story
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="stats-item">
+                        <div class="stats-number">500+</div>
+                        <p class="text-white/80 font-medium text-lg">Lives Transformed</p>
+                    </div>
+                    <div class="stats-item">
+                        <div class="stats-number">100+</div>
+                        <p class="text-white/80 font-medium text-lg">Video Messages</p>
+                    </div>
+                    <div class="stats-item">
+                        <div class="stats-number">50+</div>
+                        <p class="text-white/80 font-medium text-lg">Countries Reached</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Latest Video Section -->
-    <section id="content" class="py-16 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-4">Latest from My YouTube Channel</h2>
+    <section id="content" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">Latest Message</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Watch our most recent inspiring message of hope, healing, and transformation
+                </p>
+                <div class="section-divider"></div>
             </div>
             
-            <div id="youtube-container" class="max-w-4xl mx-auto mb-16">
-                <div id="youtube-loading" class="flex justify-center items-center py-16">
+            <div id="youtube-container" class="max-w-5xl mx-auto">
+                <div id="youtube-loading" class="flex justify-center items-center py-20 glass-effect rounded-3xl">
                     <div class="loading-spinner"></div>
-                    <span class="ml-3 text-gray-600">Loading video...</span>
+                    <span class="ml-3 text-gray-600 text-lg">Loading latest message...</span>
                 </div>
                 <div id="youtube-video" class="youtube-embed hidden"></div>
-                <div id="youtube-error" class="text-center py-12 hidden">
-                    <p class="text-gray-600">Unable to load the latest video at this time.</p>
+                <div id="youtube-error" class="text-center py-16 glass-effect rounded-3xl hidden">
+                    <i class="fas fa-exclamation-triangle text-orange-500 text-4xl mb-6"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Unable to Load Video</h3>
+                    <p class="text-gray-600 text-lg mb-4">We're having trouble loading the latest video right now.</p>
+                    <a href="https://www.youtube.com/@shatteredsent" target="_blank" class="btn-primary">
+                        <i class="fab fa-youtube mr-2"></i>
+                        Visit Our YouTube Channel
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 px-6 md:px-12 bg-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-8">About Shattered & Sent</h2>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                "Shattered & Sent" is a ministry dedicated to sharing the transformative power of God's love and grace. Even in brokenness, God uses us for His glorious purposes. We provide biblical insights, testimonies, and practical wisdom to encourage believers on their spiritual journey.
-            </p>
-        </div>
-    </section>
-
-    <!-- Content Section -->
-    <section class="py-16 px-6 md:px-12 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 id="blog-title" class="text-3xl md:text-4xl font-bold text-indigo-700 mb-8">Loading blog posts...</h2>
+    <!-- Featured Study Guide Section -->
+    <section class="section-padding bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">Featured Study Guide</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Download our comprehensive curriculum for overcoming adversity through biblical wisdom
+                </p>
+                <div class="section-divider"></div>
             </div>
             
-            <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Blog posts will be loaded here dynamically -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                    <div class="p-6">
-                        <div class="animate-pulse">
-                            <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
-                            <div class="h-3 bg-gray-300 rounded w-full mb-2"></div>
-                            <div class="h-3 bg-gray-300 rounded w-5/6"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                    <div class="p-6">
-                        <div class="animate-pulse">
-                            <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
-                            <div class="h-3 bg-gray-300 rounded w-full mb-2"></div>
-                            <div class="h-3 bg-gray-300 rounded w-5/6"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                    <div class="p-6">
-                        <div class="animate-pulse">
-                            <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
-                            <div class="h-3 bg-gray-300 rounded w-full mb-2"></div>
-                            <div class="h-3 bg-gray-300 rounded w-5/6"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 px-6 md:px-12 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-6">Get in Touch</h2>
-            </div>
-            
-            <div class="max-w-2xl mx-auto">
-                <form id="contact-form" class="space-y-6">
-                    <div>
-                        <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
-                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your Name">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-lg font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="you@example.com">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-lg font-medium text-gray-700 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your message..."></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" id="submit-btn" class="bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition duration-300 disabled:opacity-50">
-                            <span id="submit-text">Send Message</span>
-                            <div id="submit-spinner" class="loading-spinner mx-auto hidden" style="width: 1.25rem; height: 1.25rem;"></div>
-                        </button>
-                    </div>
-                </form>
-                
-                <div class="mt-12 text-center text-gray-600">
-                    <p class="mb-2">Or email us directly at:</p>
-                    <p class="text-xl font-semibold text-indigo-700">
-                        <a href="mailto:shattered.sent@gmail.com">shattered.sent@gmail.com</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 text-center">
-        <p class="text-gray-400">&copy; 2025 Shattered & Sent. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // Configuration - Update this to match your deployed backend URL
-        const API_BASE_URL = 'https://jshafer2017.pythonanywhere.com';
-
-        // Show notifications
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.classList.add('show');
-
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-
-        // Load latest YouTube video
-        async function loadLatestVideo() {
-            const loadingEl = document.getElementById('youtube-loading');
-            const videoEl = document.getElementById('youtube-video');
-            const errorEl = document.getElementById('youtube-error');
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/latest-video`);
-                const data = await response.json();
-
-                if (response.ok && data.videoId) {
-                    loadingEl.classList.add('hidden');
-                    videoEl.innerHTML = `
-                        <iframe 
-                            src="https://www.youtube.com/embed/${data.videoId}" 
-                            title="Latest Video" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    `;
-                    videoEl.classList.remove('hidden');
-                } else {
-                    throw new Error(data.error || 'Failed to load video');
-                }
-            } catch (error) {
-                console.error('Error loading video:', error);
-                loadingEl.classList.add('hidden');
-                errorEl.classList.remove('hidden');
-            }
-        }
-
-        // Load blog posts
-        async function loadBlogPosts() {
-            const blogContainer = document.getElementById('blog-container');
-            const blogTitle = document.getElementById('blog-title');
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/blog-posts`);
-                const data = await response.json();
-
-                if (response.ok && data.posts && data.posts.length > 0) {
-                    // Store posts globally for modal access
-                    window.blogPosts = data.posts;
-                    
-                    // Update title
-                    blogTitle.textContent = 'Latest Blog Posts';
-                    
-                    // Display first 3 blog posts
-                    blogContainer.innerHTML = data.posts.slice(0, 3).map((post, index) => {
-                        const publishDate = new Date(post.publish_date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        });
-                        
-                        return `
-                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover cursor-pointer" onclick="openBlogPost(${index})">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-indigo-600 mb-3">${post.title}</h3>
-                                    <p class="text-gray-700 mb-4 leading-relaxed">${post.excerpt}</p>
-                                    <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
-                                        <span>By ${post.author}</span>
-                                        <span>${publishDate}</span>
-                                    </div>
-                                    <div class="text-indigo-600 text-sm font-medium">Click to read more →</div>
+            <!-- Main Study Guide Card -->
+            <div class="max-w-5xl mx-auto mb-16">
+                <div class="content-card rounded-3xl overflow-hidden card-hover bg-gradient-to-br from-white to-indigo-50">
+                    <div class="grid lg:grid-cols-2 gap-0">
+                        <div class="image-overlay">
+                            <img src="https://placehold.co/600x400/D1D5DB/1F2937?text=Study+Guide+Image" 
+                                 onerror="this.onerror=null;this.src='https://placehold.co/600x400/D1D5DB/1F2937?text=Image+Not+Found';"
+                                 alt="Overcoming Adversity Study Guide" 
+                                 class="w-full h-full object-cover min-h-[300px]">
+                            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/80 to-purple-600/80 flex items-center justify-center">
+                                <div class="text-center text-white p-8">
+                                    <i class="fas fa-book-open text-6xl mb-4 opacity-90"></i>
+                                    <h3 class="text-3xl font-bold heading-font">7-Session Study</h3>
+                                    <p class="text-xl opacity-90">Downloadable PDF Guide</p>
                                 </div>
                             </div>
-                        `;
-                    }).join('');
-                } else {
-                    throw new Error('No blog posts found');
-                }
-            } catch (error) {
-                console.error('Error loading blog posts:', error);
-                blogTitle.textContent = 'Blog Posts';
-                blogContainer.innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <p class="text-gray-600">Unable to load blog posts at this time.</p>
-                        <p class="text-gray-500 text-sm mt-2">Please check back later.</p>
-                    </div>
-                `;
-            }
-        }
-
-        // --- NEW & IMPROVED MODAL FUNCTIONS (from previous update) ---
-
-        // Open blog post in modal
-        function openBlogPost(index) {
-            const post = window.blogPosts[index];
-            if (!post) return;
-
-            const publishDate = new Date(post.publish_date).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 transition-opacity duration-300';
-            modal.innerHTML = `
-                <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
-                    <div class="p-6 border-b border-gray-200 flex justify-between items-start">
-                        <div>
-                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">${post.title}</h2>
-                            <div class="text-sm text-gray-500">By ${post.author} • ${publishDate}</div>
                         </div>
-                        <button onclick="closeBlogModal()" class="text-gray-500 hover:text-gray-700 text-3xl ml-4 flex-shrink-0" aria-label="Close modal">&times;</button>
-                    </div>
-                    <div class="p-6 overflow-y-auto max-h-[70vh]">
-                        <div class="prose prose-lg max-w-none text-gray-900 leading-relaxed">
-                            ${post.content}
+                        <div class="p-8 lg:p-12">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg mr-4">New Release</span>
+                                <span class="text-gray-500 text-sm">✨ Free Download</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-800 heading-font mb-6">Overcoming Adversity</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                                A comprehensive 7-session curriculum designed to help believers move from brokenness to bold faith. Perfect for personal study, small groups, or church ministries.
+                            </p>
+                            
+                            <!-- Study Guide Features -->
+                            <div class="space-y-3 mb-8">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>7 in-depth sessions with Scripture foundations</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Discussion questions for group study</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Practical exercises and applications</span>
+                                </div>
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                    <span>Journaling prompts and reflection activities</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="openStudyGuideModal()" class="btn-primary text-lg flex-1">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Free Guide
+                                </button>
+                                <button onclick="showStudyGuidePreview()" class="btn-secondary bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300 text-lg">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    Preview
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-6 border-t border-gray-200 bg-gray-50 text-center">
-                        <button onclick="closeBlogModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition duration-300 shadow-md">
-                            Close
-                        </button>
                     </div>
                 </div>
-            `;
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Grid (Blog Posts) -->
+    <section class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">More Resources</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore our collection of biblical insights, practical teachings, and inspiring testimonies
+                </p>
+                <div class="section-divider"></div>
+            </div>
             
-            document.body.appendChild(modal);
-            document.body.style.overflow = 'hidden';
-
-            // Add smooth fade-in effect
-            setTimeout(() => {
-                modal.style.opacity = '1';
-                modal.querySelector('.transform').style.transform = 'scale(1)';
-                modal.querySelector('.transform').style.opacity = '1';
-            }, 10);
-            
-            // Close modal when clicking outside
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    closeBlogModal();
-                }
-            });
-        }
-
-        // Close blog modal
-        function closeBlogModal() {
-            const modal = document.querySelector('.fixed.inset-0.bg-black');
-            if (modal) {
-                const innerModal = modal.querySelector('.transform');
-                innerModal.style.transform = 'scale(0.95)';
-                innerModal.style.opacity = '0';
-                modal.style.opacity = '0';
-
-                setTimeout(() => {
-                    modal.remove();
-                    document.body.style.overflow = 'auto';
-                }, 300); // Match this with your transition duration
-            }
-        }
-
-        // --- END OF NEW & IMPROVED MODAL FUNCTIONS ---
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeBlogModal();
-            }
-        });
-
-        // Handle contact form submission
-        async function handleContactForm(event) {
-            event.preventDefault();
-
-            const form = document.getElementById('contact-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const submitText = document.getElementById('submit-text');
-            const submitSpinner = document.getElementById('submit-spinner');
-
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name').trim(),
-                email: formData.get('email').trim(),
-                message: formData.get('message').trim()
-            };
-
-            if (!data.name || !data.email || !data.message) {
-                showNotification('Please fill in all fields.', 'error');
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitText.classList.add('hidden');
-            submitSpinner.classList.remove('hidden');
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/contact`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    showNotification('Message sent successfully!', 'success');
-                    form.reset();
-                } else {
-                    throw new Error(result.error || 'Failed to send message');
-                }
-            } catch (error) {
-                console.error('Error sending message:', error);
-                showNotification('Failed to send message. Please try again.', 'error');
-            } finally {
-                submitBtn.disabled = false;
-                submitText.classList.remove('hidden');
-                submitSpinner.classList.add('hidden');
-            }
-        }
-
-        // Smooth scrolling for navigation
-        function initSmoothScrolling() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', function() {
-            loadLatestVideo();
-            loadBlogPosts();
-            document.getElementById('contact-form').addEventListener('submit', handleContactForm);
-            initSmoothScrolling();
-        });
-    </script>
-</body>
-</html>
+            <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog posts will be loaded here dynamically by JavaScript -->
+                <!-- Placeholder cards for loading state -->
+                <div class="content-card rounded-3xl overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
+                            <div class="h-3 bg-gray-300 rounded w-full mb-2"></div>
+                            <div class="h-3 bg-gray-300 rounded w-5/6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card rounded-3xl overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
+                            <div class="h-3 bg-gray-300 rounded w-full mb-2"></div>
+                            <div class="h-3 bg-gray-300 rounded w-5/6"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-card rounded-3xl overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="animate-puls
