@@ -351,6 +351,27 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
         }
+
+        /* New Modal Styling */
+        .modal-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-overlay.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content-wrapper {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .modal-content-wrapper.is-active {
+            transform: scale(1);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -460,7 +481,7 @@
     </section>
 
     <!-- Featured Study Guide Section -->
-    <section class="section-padding bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+    <section class="section-padding bg-gradient-to-br from-background to-blue-50"> <!-- Using new background variable -->
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">Featured Study Guide</h2>
@@ -472,14 +493,14 @@
             
             <!-- Main Study Guide Card -->
             <div class="max-w-5xl mx-auto mb-16">
-                <div class="content-card rounded-xl overflow-hidden card-hover bg-gradient-to-br from-white to-indigo-50">
+                <div class="content-card rounded-xl overflow-hidden card-hover bg-gradient-to-br from-white to-blue-50"> <!-- Using a cooler blue for card gradient -->
                     <div class="grid lg:grid-cols-2 gap-0">
-                        <div class="image-overlay rounded-xl"> <!-- Applied rounded-xl here too -->
+                        <div class="image-overlay rounded-xl">
                             <img src="https://placehold.co/600x400/D1D5DB/1F2937?text=Study+Guide+Image" 
                                  onerror="this.onerror=null;this.src='https://placehold.co/600x400/D1D5DB/1F2937?text=Image+Not+Found';"
                                  alt="Overcoming Adversity Study Guide" 
                                  class="w-full h-full object-cover min-h-[300px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 to-primary/80 flex items-center justify-center"> <!-- Updated gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 to-primary/80 flex items-center justify-center">
                                 <div class="text-center text-white p-8">
                                     <i class="fas fa-book-open text-6xl mb-4 opacity-90"></i>
                                     <h3 class="text-3xl font-bold heading-font">7-Session Study</h3>
@@ -489,7 +510,7 @@
                         </div>
                         <div class="p-8 lg:p-12">
                             <div class="flex items-center mb-4">
-                                <span class="bg-gradient-to-r from-accent to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg mr-4">New Release</span> <!-- Used accent color -->
+                                <span class="bg-gradient-to-r from-accent to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg mr-4">New Release</span>
                                 <span class="text-gray-500 text-sm">✨ Free Download</span>
                             </div>
                             <h3 class="text-3xl font-bold text-gray-800 heading-font mb-6">Overcoming Adversity</h3>
@@ -548,7 +569,7 @@
             <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Blog posts will be loaded here dynamically by JavaScript -->
                 <!-- Placeholder cards for loading state -->
-                <div class="content-card rounded-xl overflow-hidden card-hover"> <!-- Changed to rounded-xl -->
+                <div class="content-card rounded-xl overflow-hidden card-hover">
                     <div class="p-6">
                         <div class="animate-pulse">
                             <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
@@ -557,7 +578,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-card rounded-xl overflow-hidden card-hover"> <!-- Changed to rounded-xl -->
+                <div class="content-card rounded-xl overflow-hidden card-hover">
                     <div class="p-6">
                         <div class="animate-pulse">
                             <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
@@ -566,7 +587,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-card rounded-xl overflow-hidden card-hover"> <!-- Changed to rounded-xl -->
+                <div class="content-card rounded-xl overflow-hidden card-hover">
                     <div class="p-6">
                         <div class="animate-pulse">
                             <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
@@ -591,7 +612,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-gradient-to-br from-background to-blue-50"> <!-- Adjusted gradient -->
+    <section id="contact" class="section-padding bg-gradient-to-br from-background to-blue-50">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">Get in Touch</h2>
@@ -601,7 +622,7 @@
                 <div class="section-divider"></div>
             </div>
             
-            <div class="max-w-2xl mx-auto glass-effect p-8 rounded-xl shadow-lg"> <!-- Changed to rounded-xl -->
+            <div class="max-w-2xl mx-auto glass-effect p-8 rounded-xl shadow-lg">
                 <form id="contact-form" class="space-y-6">
                     <div>
                         <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
@@ -625,7 +646,7 @@
                 
                 <div class="mt-12 text-center text-gray-600">
                     <p class="mb-2">Or email us directly at:</p>
-                    <p class="text-xl font-semibold text-primary"> <!-- Changed to primary color -->
+                    <p class="text-xl font-semibold text-primary">
                         <a href="mailto:shattered.sent@gmail.com" class="hover:underline">shattered.sent@gmail.com</a>
                     </p>
                 </div>
@@ -650,8 +671,8 @@
     </footer>
 
     <!-- Study Guide Download Modal -->
-    <div id="study-guide-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-[60] flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+    <div id="study-guide-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-[60] flex items-center justify-center p-4 modal-overlay">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl modal-content-wrapper">
             <div class="p-6 border-b border-gray-200 flex justify-between items-start">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800 mb-2">Download Study Guide</h2>
@@ -679,7 +700,7 @@
                         </select>
                     </div>
                     <div class="flex items-center">
-                        <input type="checkbox" id="newsletter" name="newsletter" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="h-5 w-5 text-primary focus:ring-primary border-gray-300 rounded"> <!-- Changed color to primary -->
                         <label for="newsletter" class="ml-2 block text-gray-700">Subscribe to our newsletter for more resources and updates.</label>
                     </div>
                     <div class="text-center">
@@ -693,8 +714,8 @@
     </div>
 
     <!-- Study Guide Preview Modal -->
-    <div id="preview-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-[60] flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+    <div id="preview-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-[60] flex items-center justify-center p-4 modal-overlay">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl modal-content-wrapper">
             <div class="p-6 border-b border-gray-200 flex justify-between items-start">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800 mb-2">Study Guide Preview</h2>
@@ -708,7 +729,7 @@
                 </div>
             </div>
             <div class="p-6 border-t border-gray-200 bg-gray-50 text-center">
-                <button onclick="closePreviewModal()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark transition duration-300 shadow-md"> <!-- Used primary color -->
+                <button onclick="closePreviewModal()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark transition duration-300 shadow-md">
                     Close Preview
                 </button>
             </div>
@@ -861,9 +882,10 @@
             });
             
             const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 transition-opacity duration-300';
+            // Using `modal-overlay` class for the outer div
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 modal-overlay hidden'; 
             modal.innerHTML = `
-                <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+                <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl modal-content-wrapper">
                     <div class="p-6 border-b border-gray-200 flex justify-between items-start">
                         <div>
                             <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">${post.title}</h2>
@@ -887,11 +909,10 @@
             document.body.appendChild(modal);
             document.body.style.overflow = 'hidden';
 
-            // Add smooth fade-in effect
+            // Add smooth fade-in effect using new classes
             setTimeout(() => {
-                modal.style.opacity = '1';
-                modal.querySelector('.transform').style.transform = 'scale(1)';
-                modal.querySelector('.transform').style.opacity = '1';
+                modal.classList.add('is-visible');
+                modal.querySelector('.modal-content-wrapper').classList.add('is-active');
             }, 10);
             
             // Close modal when clicking outside
@@ -904,15 +925,15 @@
 
         // Close blog modal
         function closeBlogModal() {
-            const modal = document.querySelector('.fixed.inset-0.bg-black');
+            const modal = document.querySelector('.fixed.inset-0.bg-black.modal-overlay');
             if (modal) {
-                const innerModal = modal.querySelector('.transform');
-                innerModal.style.transform = 'scale(0.95)';
-                innerModal.style.opacity = '0';
-                modal.style.opacity = '0';
+                const innerModal = modal.querySelector('.modal-content-wrapper');
+                
+                modal.classList.remove('is-visible');
+                innerModal.classList.remove('is-active');
 
                 setTimeout(() => {
-                    modal.remove();
+                    modal.classList.add('hidden');
                     document.body.style.overflow = 'auto';
                 }, 300); // Match this with your transition duration
             }
@@ -920,26 +941,27 @@
 
         // Study Guide Modal Functions
         function openStudyGuideModal(event) {
-            // Stop event propagation to prevent it from reaching document click listener
             if (event) event.stopPropagation();
-
             const modal = document.getElementById('study-guide-modal');
+            const innerModal = modal.querySelector('.modal-content-wrapper');
+
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+
             setTimeout(() => {
-                modal.style.opacity = '1';
-                modal.querySelector('.transform').style.transform = 'scale(1)';
-                modal.querySelector('.transform').style.opacity = '1';
+                modal.classList.add('is-visible');
+                innerModal.classList.add('is-active');
             }, 10);
         }
 
         function closeStudyGuideModal() {
             const modal = document.getElementById('study-guide-modal');
             if (modal) {
-                const innerModal = modal.querySelector('.transform');
-                innerModal.style.transform = 'scale(0.95)';
-                innerModal.style.opacity = '0';
-                modal.style.opacity = '0';
+                const innerModal = modal.querySelector('.modal-content-wrapper');
+                
+                modal.classList.remove('is-visible');
+                innerModal.classList.remove('is-active');
+
                 setTimeout(() => {
                     modal.classList.add('hidden');
                     document.body.style.overflow = 'auto';
@@ -948,30 +970,31 @@
         }
 
         function showStudyGuidePreview(event) {
-            // Stop event propagation to prevent it from reaching document click listener
             if (event) event.stopPropagation();
 
             const previewContentEl = document.getElementById('preview-content');
-            // The content is generated directly as HTML, so it should be assigned as such.
             previewContentEl.innerHTML = generateStudyGuideContentForPreview(); 
 
             const modal = document.getElementById('preview-modal');
+            const innerModal = modal.querySelector('.modal-content-wrapper');
+
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+
             setTimeout(() => {
-                modal.style.opacity = '1';
-                modal.querySelector('.transform').style.transform = 'scale(1)';
-                modal.querySelector('.transform').style.opacity = '1';
+                modal.classList.add('is-visible');
+                innerModal.classList.add('is-active');
             }, 10);
         }
 
         function closePreviewModal() {
             const modal = document.getElementById('preview-modal');
             if (modal) {
-                const innerModal = modal.querySelector('.transform');
-                innerModal.style.transform = 'scale(0.95)';
-                innerModal.style.opacity = '0';
-                modal.style.opacity = '0';
+                const innerModal = modal.querySelector('.modal-content-wrapper');
+                
+                modal.classList.remove('is-visible');
+                innerModal.classList.remove('is-active');
+
                 setTimeout(() => {
                     modal.classList.add('hidden');
                     document.body.style.overflow = 'auto';
@@ -1223,12 +1246,12 @@
             const studyModal = document.getElementById('study-guide-modal');
             const previewModal = document.getElementById('preview-modal');
             
-            // Check if the click is outside the content of the modals
-            // Only close if the modal is currently visible and the click target is NOT within the modal's inner content
-            if (!studyModal.classList.contains('hidden') && studyModal.querySelector('.transform') && !studyModal.querySelector('.transform').contains(event.target)) {
+            // Close study guide modal if visible and click is outside its content
+            if (studyModal && !studyModal.classList.contains('hidden') && !studyModal.querySelector('.modal-content-wrapper').contains(event.target)) {
                 closeStudyGuideModal();
             }
-            if (!previewModal.classList.contains('hidden') && previewModal.querySelector('.transform') && !previewModal.querySelector('.transform').contains(event.target)) {
+            // Close preview modal if visible and click is outside its content
+            if (previewModal && !previewModal.classList.contains('hidden') && !previewModal.querySelector('.modal-content-wrapper').contains(event.target)) {
                 closePreviewModal();
             }
         });
