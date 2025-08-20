@@ -515,11 +515,11 @@
                             </div>
                             
                             <div class="flex flex-col sm:flex-row gap-4">
-                                <button onclick="openStudyGuideModal()" class="btn-primary text-lg flex-1">
+                                <button onclick="openStudyGuideModal(event)" class="btn-primary text-lg flex-1">
                                     <i class="fas fa-download mr-2"></i>
                                     Download Free Guide
                                 </button>
-                                <button onclick="showStudyGuidePreview()" class="btn-secondary bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300 text-lg">
+                                <button onclick="showStudyGuidePreview(event)" class="btn-secondary bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300 text-lg">
                                     <i class="fas fa-eye mr-2"></i>
                                     Preview
                                 </button>
@@ -892,7 +892,10 @@
         }
 
         // Study Guide Modal Functions
-        function openStudyGuideModal() {
+        function openStudyGuideModal(event) {
+            // Stop event propagation to prevent it from reaching document click listener
+            if (event) event.stopPropagation();
+
             const modal = document.getElementById('study-guide-modal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -917,7 +920,10 @@
             }
         }
 
-        function showStudyGuidePreview() {
+        function showStudyGuidePreview(event) {
+            // Stop event propagation to prevent it from reaching document click listener
+            if (event) event.stopPropagation();
+
             const previewContentEl = document.getElementById('preview-content');
             // The content is generated directly as HTML, so it should be assigned as such.
             previewContentEl.innerHTML = generateStudyGuideContentForPreview(); 
@@ -1191,10 +1197,11 @@
             const previewModal = document.getElementById('preview-modal');
             
             // Check if the click is outside the content of the modals
-            if (!studyModal.classList.contains('hidden') && !studyModal.querySelector('.transform').contains(event.target)) {
+            // Only close if the modal is currently visible and the click target is NOT within the modal's inner content
+            if (!studyModal.classList.contains('hidden') && studyModal.querySelector('.transform') && !studyModal.querySelector('.transform').contains(event.target)) {
                 closeStudyGuideModal();
             }
-            if (!previewModal.classList.contains('hidden') && !previewModal.querySelector('.transform').contains(event.target)) {
+            if (!previewModal.classList.contains('hidden') && previewModal.querySelector('.transform') && !previewModal.querySelector('.transform').contains(event.target)) {
                 closePreviewModal();
             }
         });
