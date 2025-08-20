@@ -298,11 +298,14 @@
                 const data = await response.json();
 
                 if (response.ok && data.posts && data.posts.length > 0) {
+                    // Store posts globally for modal access
+                    window.blogPosts = data.posts;
+                    
                     // Update title
                     blogTitle.textContent = 'Latest Blog Posts';
                     
                     // Display first 3 blog posts
-                    blogContainer.innerHTML = data.posts.slice(0, 3).map(post => {
+                    blogContainer.innerHTML = data.posts.slice(0, 3).map((post, index) => {
                         const publishDate = new Date(post.publish_date).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
@@ -310,14 +313,15 @@
                         });
                         
                         return `
-                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover cursor-pointer" onclick="openBlogPost(${index})">
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-indigo-600 mb-3">${post.title}</h3>
                                     <p class="text-gray-700 mb-4 leading-relaxed">${post.excerpt}</p>
-                                    <div class="flex justify-between items-center text-sm text-gray-500">
+                                    <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
                                         <span>By ${post.author}</span>
                                         <span>${publishDate}</span>
                                     </div>
+                                    <div class="text-indigo-600 text-sm font-medium">Click to read more →</div>
                                 </div>
                             </div>
                         `;
@@ -336,6 +340,66 @@
                 `;
             }
         }
+
+        // Open blog post in modal
+        function openBlogPost(index) {
+            const post = window.blogPosts[index];
+            const publishDate = new Date(post.publish_date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+                    <div class="p-6 border-b border-gray-200 flex justify-between items-start">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">${post.title}</h2>
+                            <div class="text-sm text-gray-500">By ${post.author} • ${publishDate}</div>
+                        </div>
+                        <button onclick="closeBlogModal()" class="text-gray-500 hover:text-gray-700 text-3xl ml-4 flex-shrink-0">&times;</button>
+                    </div>
+                    <div class="p-6 overflow-y-auto max-h-[70vh]">
+                        <div class="prose prose-lg max-w-none">
+                            ${post.content}
+                        </div>
+                    </div>
+                    <div class="p-6 border-t border-gray-200 bg-gray-50">
+                        <button onclick="closeBlogModal()" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeBlogModal();
+                }
+            });
+        }
+
+        // Close blog modal
+        function closeBlogModal() {
+            const modal = document.querySelector('.fixed.inset-0.bg-black');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeBlogModal();
+            }
+        });
 
         // Handle contact form submission
         async function handleContactForm(event) {
