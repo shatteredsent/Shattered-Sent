@@ -900,19 +900,43 @@
                 day: 'numeric'
             });
             
-            // Process the content to add paragraph tags for proper formatting.
-            // This splits the text by one or more newline characters, filters out empty lines,
-            // and wraps each resulting line in <p> tags.
-            const formattedContent = post.content
-                .split(/\n+/) // Split by one or more newlines
-                .filter(p => p.trim() !== '') // Remove any empty lines
-                .map(p => `<p>${p.trim()}</p>`) // Wrap each line in a paragraph tag
-                .join(''); // Join them back into a single HTML string
+            // Advanced content formatting to handle headings, paragraphs, lists, and blockquotes.
+            const blocks = post.content.split(/\n\s*\n/).filter(block => block.trim() !== ''); // Split by blank lines
+            let htmlContent = '';
+
+            for (const block of blocks) {
+                const trimmedBlock = block.trim();
+                
+                if (trimmedBlock.toLowerCase().startsWith('reflection questions:')) {
+                    const lines = trimmedBlock.split('\n');
+                    const heading = lines.shift(); // Get the "Reflection Questions:" line
+                    htmlContent += `<h3 class="text-xl font-semibold mt-8 mb-4">${heading}</h3>`;
+                    htmlContent += '<ul class="list-disc list-inside space-y-2 mb-4">';
+                    for (const line of lines) {
+                        if (line.trim()) {
+                            htmlContent += `<li>${line.trim()}</li>`;
+                        }
+                    }
+                    htmlContent += '</ul>';
+                } else if (/^\d+\.\s/.test(trimmedBlock) || /conclusion:/i.test(trimmedBlock) || /introduction:/i.test(trimmedBlock)) {
+                    // This is a main heading
+                    htmlContent += `<h3 class="text-2xl font-bold heading-font mt-8 mb-4">${trimmedBlock}</h3>`;
+                } else if (trimmedBlock.startsWith('—')) {
+                    // This is a blockquote for scripture reference
+                    htmlContent += `<blockquote class="border-l-4 border-gray-400 pl-4 italic my-6 text-gray-700">${trimmedBlock}</blockquote>`;
+                } else if (trimmedBlock.toLowerCase().startsWith('scripture focus:')) {
+                    htmlContent += `<p class="font-semibold text-lg text-gray-800 my-4">${trimmedBlock}</p>`;
+                } else {
+                    // Default to a paragraph.
+                    const paragraph = trimmedBlock.replace(/\n/g, ' ');
+                    htmlContent += `<p class="my-4">${paragraph}</p>`;
+                }
+            }
 
             // Populate the modal
             document.getElementById('blog-modal-title').textContent = post.title;
             document.getElementById('blog-modal-meta').innerHTML = `By ${post.author} &bull; ${publishDate}`;
-            document.getElementById('blog-modal-content').innerHTML = formattedContent;
+            document.getElementById('blog-modal-content').innerHTML = htmlContent;
 
             // Show the modal
             const modal = document.getElementById('blog-post-modal');
