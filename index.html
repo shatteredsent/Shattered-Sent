@@ -10,30 +10,32 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-dark: #3730a3;
-            --secondary: #7c3aed;
-            --accent: #f59e0b;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --background: #fafafa;
+            /* Masculine-leaning color palette */
+            --primary: #2A4D69; /* Dark Steel Blue */
+            --primary-dark: #1E364A; /* Even Darker Steel Blue */
+            --secondary: #4B8CC8; /* Medium Blue for accent */
+            --accent: #F7B32B; /* Muted Gold/Amber for highlight */
+            --text-primary: #2C3E50; /* Dark Charcoal */
+            --text-secondary: #6E8898; /* Muted Gray-Blue */
+            --background: #ECF0F1; /* Light Grey-Blue */
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #fafafa 0%, #f3f4f6 100%);
+            background: linear-gradient(135deg, var(--background) 0%, #DCE3E8 100%); /* Subtle cool gradient */
             color: var(--text-primary);
             line-height: 1.7;
         }
         
         .heading-font {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Oswald', sans-serif; /* Bolder, more condensed font for headings */
+            font-weight: 700; /* Ensure headings are bold */
         }
         
         .glass-effect {
@@ -51,7 +53,7 @@
         }
         
         .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%); /* Darker, cooler gradient */
             position: relative;
             overflow: hidden;
         }
@@ -64,9 +66,9 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(75, 140, 200, 0.3) 0%, transparent 50%), /* Using secondary color with opacity */
                 radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 58, 237, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 40% 40%, rgba(42, 77, 105, 0.2) 0%, transparent 50%); /* Using primary color with opacity */
             animation: float 6s ease-in-out infinite;
         }
         
@@ -86,10 +88,11 @@
         }
         
         .content-card {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            background: linear-gradient(145deg, #ffffff 0%, #F5F7F9 100%); /* Slightly less bright background */
             border: 1px solid rgba(226, 232, 240, 0.8);
             position: relative;
             overflow: hidden;
+            border-radius: 1rem; /* Less rounded corners for a firmer look */
         }
         
         .content-card::before {
@@ -99,7 +102,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(42, 77, 105, 0.1), transparent); /* Using new primary color with opacity */
             transition: left 0.5s ease;
         }
         
@@ -136,7 +139,7 @@
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 35px -5px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 15px 35px -5px rgba(42, 77, 105, 0.4); /* Shadow based on new primary */
         }
         
         .btn-primary:hover::before {
@@ -183,7 +186,7 @@
         }
         
         .loading-spinner {
-            border: 3px solid rgba(79, 70, 229, 0.2);
+            border: 3px solid rgba(42, 77, 105, 0.2); /* Using new primary with opacity */
             border-top: 3px solid var(--primary);
             border-radius: 50%;
             width: 2rem;
@@ -248,7 +251,7 @@
         .stats-number {
             font-size: 3rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #F0F9FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -258,7 +261,7 @@
         .image-overlay {
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
+            border-radius: 1rem; /* Less rounded corners for a firmer look */
         }
         
         .image-overlay img {
@@ -301,7 +304,7 @@
             width: 100%;
             padding: 1rem 1.5rem;
             border: 2px solid #e5e7eb;
-            border-radius: 12px;
+            border-radius: 0.75rem; /* Slightly less rounded */
             font-size: 1rem;
             transition: all 0.3s ease;
             background: white;
@@ -310,7 +313,7 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            box-shadow: 0 0 0 3px rgba(42, 77, 105, 0.1); /* Using new primary with opacity */
         }
         
         .section-padding {
@@ -469,14 +472,14 @@
             
             <!-- Main Study Guide Card -->
             <div class="max-w-5xl mx-auto mb-16">
-                <div class="content-card rounded-3xl overflow-hidden card-hover bg-gradient-to-br from-white to-indigo-50">
+                <div class="content-card rounded-xl overflow-hidden card-hover bg-gradient-to-br from-white to-indigo-50">
                     <div class="grid lg:grid-cols-2 gap-0">
-                        <div class="image-overlay">
+                        <div class="image-overlay rounded-xl"> <!-- Applied rounded-xl here too -->
                             <img src="https://placehold.co/600x400/D1D5DB/1F2937?text=Study+Guide+Image" 
                                  onerror="this.onerror=null;this.src='https://placehold.co/600x400/D1D5DB/1F2937?text=Image+Not+Found';"
                                  alt="Overcoming Adversity Study Guide" 
                                  class="w-full h-full object-cover min-h-[300px]">
-                            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/80 to-purple-600/80 flex items-center justify-center">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 to-primary/80 flex items-center justify-center"> <!-- Updated gradient -->
                                 <div class="text-center text-white p-8">
                                     <i class="fas fa-book-open text-6xl mb-4 opacity-90"></i>
                                     <h3 class="text-3xl font-bold heading-font">7-Session Study</h3>
@@ -486,7 +489,7 @@
                         </div>
                         <div class="p-8 lg:p-12">
                             <div class="flex items-center mb-4">
-                                <span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg mr-4">New Release</span>
+                                <span class="bg-gradient-to-r from-accent to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg mr-4">New Release</span> <!-- Used accent color -->
                                 <span class="text-gray-500 text-sm">✨ Free Download</span>
                             </div>
                             <h3 class="text-3xl font-bold text-gray-800 heading-font mb-6">Overcoming Adversity</h3>
@@ -545,7 +548,7 @@
             <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Blog posts will be loaded here dynamically by JavaScript -->
                 <!-- Placeholder cards for loading state -->
-                <div class="content-card rounded-3xl overflow-hidden card-hover">
+                <div class="content-card rounded-xl overflow-hidden card-hover"> <!-- Changed to rounded-xl -->
                     <div class="p-6">
                         <div class="animate-pulse">
                             <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
@@ -554,7 +557,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-card rounded-3xl overflow-hidden card-hover">
+                <div class="content-card rounded-xl overflow-hidden card-hover"> <!-- Changed to rounded-xl -->
                     <div class="p-6">
                         <div class="animate-pulse">
                             <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
@@ -563,7 +566,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-card rounded-3xl overflow-hidden card-hover">
+                <div class="content-card rounded-xl overflow-hidden card-hover"> <!-- Changed to rounded-xl -->
                     <div class="p-6">
                         <div class="animate-pulse">
                             <div class="h-4 bg-gray-300 rounded w-3/4 mb-3"></div>
@@ -588,7 +591,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-gradient-to-br from-indigo-50 to-purple-50">
+    <section id="contact" class="section-padding bg-gradient-to-br from-background to-blue-50"> <!-- Adjusted gradient -->
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold gradient-text heading-font mb-6">Get in Touch</h2>
@@ -598,7 +601,7 @@
                 <div class="section-divider"></div>
             </div>
             
-            <div class="max-w-2xl mx-auto glass-effect p-8 rounded-3xl shadow-lg">
+            <div class="max-w-2xl mx-auto glass-effect p-8 rounded-xl shadow-lg"> <!-- Changed to rounded-xl -->
                 <form id="contact-form" class="space-y-6">
                     <div>
                         <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
@@ -622,7 +625,7 @@
                 
                 <div class="mt-12 text-center text-gray-600">
                     <p class="mb-2">Or email us directly at:</p>
-                    <p class="text-xl font-semibold text-indigo-700">
+                    <p class="text-xl font-semibold text-primary"> <!-- Changed to primary color -->
                         <a href="mailto:shattered.sent@gmail.com" class="hover:underline">shattered.sent@gmail.com</a>
                     </p>
                 </div>
@@ -654,4 +657,665 @@
                     <h2 class="text-2xl font-bold text-gray-800 mb-2">Download Study Guide</h2>
                     <p class="text-gray-600">Fill in your details to get your free guide.</p>
                 </div>
-                <button onclick="closeStudyGuideModal()" class="text-gray-500 hover:text-gray
+                <button onclick="closeStudyGuideModal()" class="text-gray-500 hover:text-gray-700 text-3xl ml-4 flex-shrink-0" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[70vh]">
+                <form id="download-form" class="space-y-6">
+                    <div>
+                        <label for="download-name" class="block text-lg font-medium text-gray-700 mb-2">Name</label>
+                        <input type="text" id="download-name" name="name" required class="form-input" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label for="download-email" class="block text-lg font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="download-email" name="email" required class="form-input" placeholder="your.email@example.com">
+                    </div>
+                    <div>
+                        <label for="intended_use" class="block text-lg font-medium text-gray-700 mb-2">How do you intend to use this guide?</label>
+                        <select id="intended_use" name="intended_use" class="form-input">
+                            <option value="personal">Personal Study</option>
+                            <option value="small_group">Small Group</option>
+                            <option value="church_ministry">Church Ministry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="newsletter" class="ml-2 block text-gray-700">Subscribe to our newsletter for more resources and updates.</label>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" onclick="downloadStudyGuide()" class="btn-primary text-lg px-10 py-4 shadow-xl">
+                            Download Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Guide Preview Modal -->
+    <div id="preview-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 z-[60] flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-start">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Study Guide Preview</h2>
+                    <p class="text-gray-600">A glimpse into the "Overcoming Adversity" curriculum.</p>
+                </div>
+                <button onclick="closePreviewModal()" class="text-gray-500 hover:text-gray-700 text-3xl ml-4 flex-shrink-0" aria-label="Close preview">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto max-h-[70vh]">
+                <div id="preview-content" class="prose prose-lg max-w-none text-gray-900 leading-relaxed">
+                    <!-- Study guide content will be loaded here -->
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-200 bg-gray-50 text-center">
+                <button onclick="closePreviewModal()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark transition duration-300 shadow-md"> <!-- Used primary color -->
+                    Close Preview
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration - Update this to match your deployed backend URL
+        const API_BASE_URL = 'https://jshafer2017.pythonanywhere.com';
+
+        // Show notifications
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notification-text');
+            const notificationIcon = notification.querySelector('i');
+
+            notificationText.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+
+            if (type === 'success') {
+                notificationIcon.className = 'fas fa-check-circle mr-2';
+            } else if (type === 'error') {
+                notificationIcon.className = 'fas fa-times-circle mr-2';
+            }
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Load latest YouTube video
+        async function loadLatestVideo() {
+            const loadingEl = document.getElementById('youtube-loading');
+            const videoEl = document.getElementById('youtube-video');
+            const errorEl = document.getElementById('youtube-error');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/latest-video`);
+                const data = await response.json();
+
+                if (response.ok && data.videoId) {
+                    loadingEl.classList.add('hidden');
+                    videoEl.innerHTML = `
+                        <iframe 
+                            src="https://www.youtube.com/embed/${data.videoId}" 
+                            title="Latest Video" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    `;
+                    videoEl.classList.remove('hidden');
+                } else {
+                    throw new Error(data.error || 'Failed to load video');
+                }
+            } catch (error) {
+                console.error('Error loading video:', error);
+                loadingEl.classList.add('hidden');
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        // Load blog posts
+        async function loadBlogPosts() {
+            const blogContainer = document.getElementById('blog-container');
+            const blogTitle = document.getElementById('blog-title'); 
+            
+            console.log('Value of blogTitle element:', blogTitle); // Added for debugging
+            console.log('Attempting to load blog posts from:', `${API_BASE_URL}/api/blog-posts`);
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/blog-posts`);
+                console.log('Response status:', response.status, 'Response OK:', response.ok);
+                
+                const data = await response.json();
+                console.log('Data received:', data);
+
+                if (response.ok && data.posts && data.posts.length > 0) {
+                    // Store posts globally for modal access
+                    window.blogPosts = data.posts;
+                    
+                    // Update title (if blogTitle element exists)
+                    if (blogTitle) {
+                        blogTitle.textContent = 'Latest Blog Posts';
+                    }
+                    
+                    // Display first 3 blog posts
+                    blogContainer.innerHTML = data.posts.slice(0, 3).map((post, index) => {
+                        const publishDate = new Date(post.publish_date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        
+                        return `
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover cursor-pointer" onclick="openBlogPost(${index})">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-indigo-600 mb-3">${post.title}</h3>
+                                    <p class="text-gray-700 mb-4 leading-relaxed">${post.excerpt}</p>
+                                    <div class="flex justify-between items-center text-sm text-gray-500 mb-3">
+                                        <span>By ${post.author}</span>
+                                        <span>${publishDate}</span>
+                                    </div>
+                                    <div class="text-indigo-600 text-sm font-medium">Click to read more →</div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    console.warn('API returned no posts or an error:', data);
+                    // More robust error display if blogTitle is null (though the check above should handle this)
+                    if (blogTitle) {
+                        blogTitle.textContent = 'Blog Posts'; 
+                    }
+                    blogContainer.innerHTML = `
+                        <div class="col-span-full text-center py-12">
+                            <p class="text-gray-600">Unable to load blog posts at this time.</p>
+                            <p class="text-gray-500 text-sm mt-2">Please check back later.</p>
+                            <p class="text-red-500 text-sm mt-1">Error: ${data.error || 'No posts or API error.'}</p>
+                        </div>
+                    `;
+                    throw new Error(data.error || 'No blog posts found or API error.');
+                }
+            } catch (error) {
+                console.error('Error loading blog posts:', error);
+                // Ensure blogTitle is handled even if it somehow becomes null after the initial check
+                if (blogTitle) {
+                    blogTitle.textContent = 'Blog Posts'; 
+                }
+                blogContainer.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-600">Unable to load blog posts at this time.</p>
+                        <p class="text-gray-500 text-sm mt-2">Please check back later.</p>
+                        <p class="text-red-500 text-sm mt-1">Error: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Open blog post in modal
+        function openBlogPost(index) {
+            const post = window.blogPosts[index];
+            if (!post) return;
+
+            const publishDate = new Date(post.publish_date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 transition-opacity duration-300';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+                    <div class="p-6 border-b border-gray-200 flex justify-between items-start">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">${post.title}</h2>
+                            <div class="text-sm text-gray-500">By ${post.author} • ${publishDate}</div>
+                        </div>
+                        <button onclick="closeBlogModal()" class="text-gray-500 hover:text-gray-700 text-3xl ml-4 flex-shrink-0" aria-label="Close modal">&times;</button>
+                    </div>
+                    <div class="p-6 overflow-y-auto max-h-[70vh]">
+                        <div class="prose prose-lg max-w-none text-gray-900 leading-relaxed">
+                            ${post.content}
+                        </div>
+                    </div>
+                    <div class="p-6 border-t border-gray-200 bg-gray-50 text-center">
+                        <button onclick="closeBlogModal()" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primary-dark transition duration-300 shadow-md">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+
+            // Add smooth fade-in effect
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.querySelector('.transform').style.transform = 'scale(1)';
+                modal.querySelector('.transform').style.opacity = '1';
+            }, 10);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeBlogModal();
+                }
+            });
+        }
+
+        // Close blog modal
+        function closeBlogModal() {
+            const modal = document.querySelector('.fixed.inset-0.bg-black');
+            if (modal) {
+                const innerModal = modal.querySelector('.transform');
+                innerModal.style.transform = 'scale(0.95)';
+                innerModal.style.opacity = '0';
+                modal.style.opacity = '0';
+
+                setTimeout(() => {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                }, 300); // Match this with your transition duration
+            }
+        }
+
+        // Study Guide Modal Functions
+        function openStudyGuideModal(event) {
+            // Stop event propagation to prevent it from reaching document click listener
+            if (event) event.stopPropagation();
+
+            const modal = document.getElementById('study-guide-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.querySelector('.transform').style.transform = 'scale(1)';
+                modal.querySelector('.transform').style.opacity = '1';
+            }, 10);
+        }
+
+        function closeStudyGuideModal() {
+            const modal = document.getElementById('study-guide-modal');
+            if (modal) {
+                const innerModal = modal.querySelector('.transform');
+                innerModal.style.transform = 'scale(0.95)';
+                innerModal.style.opacity = '0';
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        function showStudyGuidePreview(event) {
+            // Stop event propagation to prevent it from reaching document click listener
+            if (event) event.stopPropagation();
+
+            const previewContentEl = document.getElementById('preview-content');
+            // The content is generated directly as HTML, so it should be assigned as such.
+            previewContentEl.innerHTML = generateStudyGuideContentForPreview(); 
+
+            const modal = document.getElementById('preview-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modal.querySelector('.transform').style.transform = 'scale(1)';
+                modal.querySelector('.transform').style.opacity = '1';
+            }, 10);
+        }
+
+        function closePreviewModal() {
+            const modal = document.getElementById('preview-modal');
+            if (modal) {
+                const innerModal = modal.querySelector('.transform');
+                innerModal.style.transform = 'scale(0.95)';
+                innerModal.style.opacity = '0';
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        // Handle study guide download
+        async function downloadStudyGuide() {
+            const form = document.getElementById('download-form');
+            const downloadNameInput = document.getElementById('download-name');
+            const downloadEmailInput = document.getElementById('download-email');
+
+            const data = {
+                name: downloadNameInput.value.trim(),
+                email: downloadEmailInput.value.trim(),
+                intended_use: form.elements['intended_use'].value || 'not specified',
+                newsletter: form.elements['newsletter'].checked
+            };
+
+            // Basic validation
+            if (!data.name || !data.email) {
+                showNotification('Please fill in your name and email address.', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            try {
+                showNotification('Preparing your download...', 'success');
+                
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Generate and download the PDF
+                generateStudyGuidePDF(data.name);
+                
+                // Close modal
+                closeStudyGuideModal();
+                
+                // Show success message
+                showNotification('Study guide downloaded successfully! Check your downloads folder.', 'success');
+                
+                // Clear form
+                form.reset();
+                
+            } catch (error) {
+                console.error('Error downloading study guide:', error);
+                showNotification('Failed to download study guide. Please try again.', 'error');
+            }
+        }
+
+        // Function to generate the study guide content for both download and preview
+        function generateStudyGuideContentForPreview() {
+            const userName = document.getElementById('download-name')?.value || 'Guest'; // Use name from form if available, else 'Guest'
+
+            return `
+                <h1 class="text-3xl font-bold mb-4">Overcoming Adversity: A 7-Session Study Guide</h1>
+                <h2 class="text-xl font-semibold mb-6">Shattered & Sent Ministry</h2>
+
+                <p class="mb-2"><em>Downloaded by: ${userName}</em></p>
+                <p class="mb-6"><em>Date: ${new Date().toLocaleDateString()}</em></p>
+
+                <hr class="my-8 border-gray-300">
+
+                <h2 class="text-2xl font-bold mb-3">Session 1: Understanding Adversity — God's Classroom for Growth</h2>
+                <p class="font-semibold text-lg mb-2">Scripture Foundation: Romans 5:3–5; James 1:2–4</p>
+                <p class="font-semibold text-lg mb-4">Key Teaching: Adversity is not meaningless—it is a classroom where God develops perseverance, character, and hope.</p>
+
+                <h3 class="text-xl font-semibold mb-2">Teaching Points:</h3>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>Adversity comes in many forms (loss, sin, failure, injustice, hardship).</li>
+                    <li>God does not waste suffering; He uses it to shape us into Christlikeness.</li>
+                    <li>Trials invite us to trust God more deeply.</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Discussion Questions:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>When you face adversity, what is your first reaction?</li>
+                    <li>How have past trials shaped your faith?</li>
+                    <li>What do you think it means that suffering produces hope?</li>
+                </ul>
+
+                <p class="font-semibold italic mt-6">Application Challenge: Journal one trial you are currently experiencing. Write down what God may be teaching you through it.</p>
+
+                <hr class="my-8 border-gray-300">
+
+                <h2 class="text-2xl font-bold mb-3">Session 2: Cultivating a Growth Mindset Rooted in God's Promises</h2>
+                <p class="font-semibold text-lg mb-2">Scripture Foundation: Philippians 4:8; Hebrews 13:5</p>
+                <p class="font-semibold text-lg mb-4">Key Teaching: Faith reframes challenges, turning obstacles into opportunities for growth.</p>
+
+                <h3 class="text-xl font-semibold mb-2">Teaching Points:</h3>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>A growth mindset believes hardship is an opportunity to mature.</li>
+                    <li>God's promises remind us we are not abandoned in adversity.</li>
+                    <li>Replacing negative self-talk with biblical truth renews our minds.</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Discussion Questions:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>What lies do you tend to believe in hardship?</li>
+                    <li>What promises from Scripture combat those lies?</li>
+                    <li>How does focusing on "whatever is true, noble, right, pure" (Philippians 4:8) change perspective?</li>
+                </ul>
+
+                <p class="font-semibold italic mt-6">Practical Exercise: Write down one negative thought you often struggle with. Next to it, write the scriptural truth that replaces it.</p>
+
+                <hr class="my-8 border-gray-300">
+
+                <h2 class="text-2xl font-bold mb-3">Session 3: Building Resilience Through Daily Habits</h2>
+                <p class="font-semibold text-lg mb-2">Scripture Foundation: 1 Thessalonians 5:16–18; Psalm 46:1</p>
+                <p class="font-semibold text-lg mb-4">Key Teaching: Resilience isn't built overnight—it's developed through faithful, daily practices rooted in God.</p>
+
+                <h3 class="text-xl font-semibold mb-2">Teaching Points:</h3>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>Small, consistent steps forward build strength.</li>
+                    <li>Daily disciplines of prayer, Scripture reading, and worship anchor us.</li>
+                    <li>God is our refuge and strength in chaos.</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Discussion Questions:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>What daily habits keep you grounded in your faith?</li>
+                    <li>How does prayer or worship help you in difficult seasons?</li>
+                    <li>What habit can you begin this week to build resilience?</li>
+                </ul>
+
+                <p class="font-semibold italic mt-6">Application Challenge: Create a "Resilience Routine"—a short daily plan (5–10 minutes) of prayer, Scripture, and gratitude.</p>
+
+                <hr class="my-8 border-gray-300">
+
+                <h2 class="text-2xl font-bold mb-3">Session 4: Leaning Into Community & Biblical Support Networks</h2>
+                <p class="font-semibold text-lg mb-2">Scripture Foundation: Galatians 6:2; Hebrews 10:24–25</p>
+                <p class="font-semibold text-lg mb-4">Key Teaching: God designed us to carry each other's burdens and to encourage one another.</p>
+
+                <h3 class="text-xl font-semibold mb-2">Teaching Points:</h3>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>Resilience grows in community, not isolation.</li>
+                    <li>Sharing struggles invites empathy and prayer.</li>
+                    <li>Encouragement is a vital tool for overcoming hardship.</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Discussion Questions:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>Who in your life encourages you when you're struggling?</li>
+                    <li>Why is it difficult to be vulnerable about adversity?</li>
+                    <li>How can you be an encourager for others?</li>
+                </ul>
+
+                <p class="font-semibold italic mt-6">Group Activity: Pair up and share one struggle you're facing. Pray for each other using a specific Scripture promise.</p>
+
+                <hr class="my-8 border-gray-300">
+
+                <h2 class="text-2xl font-bold mb-3">Session 5: Finding Silver Linings in Hardship</h2>
+                <p class="font-semibold text-lg mb-2">Scripture Foundation: 2 Corinthians 12:9–10; Genesis 50:20</p>
+                <p class="font-semibold text-lg mb-4">Key Teaching: Even in pain, God brings beauty, strength, and purpose.</p>
+
+                <h3 class="text-xl font-semibold mb-2">Teaching Points:</h3>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>Hardship develops compassion, humility, and empathy.</li>
+                    <li>God's power is made perfect in weakness.</li>
+                    <li>What others meant for harm, God can turn to good.</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Discussion Questions:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>What is one way a past hardship has shaped you for the better?</li>
+                    <li>How does Paul's statement "when I am weak, then I am strong" speak to your own life?</li>
+                    <li>Can you identify a silver lining in your current struggle?</li>
+                </ul>
+
+                <p class="font-semibold italic mt-6">Practical Exercise: Write a short testimony of how God brought good out of a past adversity. Share it with a trusted friend or group.</p>
+
+                <hr class="my-8 border-gray-300">
+
+                <h2 class="text-2xl font-bold mb-3">Session 6: Standing Firm With Hope & Perseverance</h2>
+                <p class="font-semibold text-lg mb-2">Scripture Foundation: Isaiah 40:31; Hebrews 12:1–2</p>
+                <p class="font-semibold text-lg mb-4">Key Teaching: Hope sustains us in adversity, and perseverance strengthens our faith for the long journey.</p>
+
+                <h3 class="text-xl font-semibold mb-2">Teaching Points:</h3>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>Hope is not wishful thinking—it's confidence in God's promises.</li>
+                    <li>The Christian life is a marathon, not a sprint.</li>
+                    <li>Fixing our eyes on Jesus sustains us through trials.</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Discussion Questions:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>What gives you hope in your darkest seasons?</li>
+                    <li>What does it mean to "run with perseverance the race marked out for us"?</li>
+                    <li>How can you keep your focus on Jesus amid adversity?</li>
+                </ul>
+
+                <p class="font-semibold italic mt-6">Journaling Prompt: Write a compassionate pep talk to yourself. Encourage yourself with Scripture and remind yourself of God's faithfulness.</p>
+
+                <hr class="my-8 border-gray-300">
+
+                <h2 class="text-2xl font-bold mb-3">Session 7: Reflection, Renewal, & Testimony</h2>
+                <p class="font-semibold text-lg mb-2">Scripture Foundation: Lamentations 3:21–23; Psalm 77:11–12</p>
+                <p class="font-semibold text-lg mb-4">Key Teaching: Reflection helps us recognize God's faithfulness and strengthens us for the future.</p>
+
+                <h3 class="text-xl font-semibold mb-2">Teaching Points:</h3>
+                <ol class="list-decimal list-inside ml-4 space-y-1">
+                    <li>Journaling and prayer bring clarity and healing.</li>
+                    <li>Remembering past victories fuels future resilience.</li>
+                    <li>Testimonies encourage both ourselves and others.</li>
+                </ol>
+
+                <h3 class="text-xl font-semibold mt-6 mb-2">Discussion Questions:</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1">
+                    <li>How has God shown Himself faithful in your past?</li>
+                    <li>Why is it important to remember and record His works?</li>
+                    <li>How can your story encourage others in their adversity?</li>
+                </ul>
+
+                <p class="font-semibold italic mt-6">Final Activity: Write your "Adversity Testimony"—a brief summary of one hardship, how God carried you, and what you learned. Share it with your group or publish it as encouragement for others.</p>
+
+                <hr class="my-8 border-gray-300">
+
+                <p class="font-bold mt-8 text-center text-lg">This study guide is a gift from Shattered & Sent Ministry.</p>
+                <p class="text-center">For more resources, visit us online or contact us at shattered.sent@gmail.com</p>
+                <p class="text-center font-bold italic mt-4">"We know that in all things God works for the good of those who love him, who have been called according to his purpose." - Romans 8:28</p>
+            `;
+        }
+
+        // Generate PDF function (simplified version)
+        function generateStudyGuidePDF(userName) {
+            const studyGuideContent = generateStudyGuideContentForPreview(); // Reuse content from preview
+
+            // Create and download the file
+            const blob = new Blob([studyGuideContent], { type: 'text/html;charset=utf-8' }); // Changed to text/html
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Overcoming-Adversity-Study-Guide-Shattered-and-Sent.html'; // Changed to .html
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const studyModal = document.getElementById('study-guide-modal');
+            const previewModal = document.getElementById('preview-modal');
+            
+            // Check if the click is outside the content of the modals
+            // Only close if the modal is currently visible and the click target is NOT within the modal's inner content
+            if (!studyModal.classList.contains('hidden') && studyModal.querySelector('.transform') && !studyModal.querySelector('.transform').contains(event.target)) {
+                closeStudyGuideModal();
+            }
+            if (!previewModal.classList.contains('hidden') && previewModal.querySelector('.transform') && !previewModal.querySelector('.transform').contains(event.target)) {
+                closePreviewModal();
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeStudyGuideModal();
+                closePreviewModal();
+            }
+        });
+
+        // Handle contact form submission
+        async function handleContactForm(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const submitSpinner = document.getElementById('submit-spinner');
+
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name').trim(),
+                email: formData.get('email').trim(),
+                message: formData.get('message').trim()
+            };
+
+            if (!data.name || !data.email || !data.message) {
+                showNotification('Please fill in all fields.', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitText.classList.add('hidden');
+            submitSpinner.classList.remove('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/contact`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showNotification('Message sent successfully!', 'success');
+                    form.reset();
+                } else {
+                    throw new Error(result.error || 'Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                showNotification('Failed to send message. Please try again.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitText.classList.remove('hidden');
+                submitSpinner.classList.add('hidden');
+            }
+        }
+
+        // Smooth scrolling for navigation
+        function initSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLatestVideo();
+            loadBlogPosts();
+            document.getElementById('contact-form').addEventListener('submit', handleContactForm);
+            initSmoothScrolling();
+        });
+    </script>
+</body>
+</html>
