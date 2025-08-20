@@ -89,5 +89,35 @@ def handle_contact_form():
         print(f"An unexpected error occurred: {e}")
         return jsonify({"error": "Internal server error."}), 500
 
+# --- Study Guide Download Endpoint ---
+@app.route('/api/download-study-guide', methods=['POST'])
+def handle_study_guide_download():
+    if not request.is_json:
+        return jsonify({"error": "Request must be JSON"}), 400
+    
+    data = request.get_json()
+    name = data.get('name')
+    email = data.get('email')
+    intended_use = data.get('intended_use', 'not specified')
+    newsletter = data.get('newsletter', False)
+    
+    if not all([name, email]):
+        return jsonify({"error": "Name and email are required."}), 400
+    
+    # Here you could:
+    # 1. Save the lead information to a database
+    # 2. Add to a mailing list service (like Mailchimp)
+    # 3. Send a follow-up email with the download link
+    # 4. Log the download for analytics
+    
+    # For now, we'll just return success
+    # In production, you'd want to store this data
+    print(f"Study guide download: {name} ({email}) - {intended_use} - Newsletter: {newsletter}")
+    
+    return jsonify({
+        "message": "Download information recorded successfully!",
+        "download_ready": True
+    }), 200
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
