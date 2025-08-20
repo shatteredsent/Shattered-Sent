@@ -900,10 +900,19 @@
                 day: 'numeric'
             });
             
+            // Process the content to add paragraph tags for proper formatting.
+            // This splits the text by one or more newline characters, filters out empty lines,
+            // and wraps each resulting line in <p> tags.
+            const formattedContent = post.content
+                .split(/\n+/) // Split by one or more newlines
+                .filter(p => p.trim() !== '') // Remove any empty lines
+                .map(p => `<p>${p.trim()}</p>`) // Wrap each line in a paragraph tag
+                .join(''); // Join them back into a single HTML string
+
             // Populate the modal
             document.getElementById('blog-modal-title').textContent = post.title;
             document.getElementById('blog-modal-meta').innerHTML = `By ${post.author} &bull; ${publishDate}`;
-            document.getElementById('blog-modal-content').innerHTML = post.content;
+            document.getElementById('blog-modal-content').innerHTML = formattedContent;
 
             // Show the modal
             const modal = document.getElementById('blog-post-modal');
