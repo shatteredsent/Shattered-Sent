@@ -6,7 +6,9 @@
     <title>Shattered & Sent</title>
     <meta name="description" content="From Brokenness to Bold Faith — sharing stories of redemption, healing, and God's grace.">
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -98,7 +100,11 @@
 
     <header class="glass-effect py-4 px-6 md:px-12">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="text-3xl font-bold text-indigo-700 mb-4 md:mb-0">Shattered & Sent</div>
+            <!-- Logo Section - Updated to include the uploaded image -->
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="Shattered Thumbnail.jpg" alt="Shattered & Sent Logo" class="h-16 w-auto mr-3 rounded-lg shadow-md">
+                <div class="text-3xl font-bold text-indigo-700">Shattered & Sent</div>
+            </div>
             <nav>
                 <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8">
                     <li><a href="#home" class="text-lg text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Home</a></li>
@@ -110,6 +116,7 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section id="home" class="gradient-bg text-white py-20 px-6 md:px-12 text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
@@ -121,6 +128,7 @@
         </div>
     </section>
 
+    <!-- Latest Video Section -->
     <section id="content" class="py-16 px-6 md:px-12">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
@@ -140,6 +148,7 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="py-16 px-6 md:px-12 bg-white">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-8">About Shattered & Sent</h2>
@@ -149,6 +158,7 @@
         </div>
     </section>
 
+    <!-- Content Section -->
     <section class="py-16 px-6 md:px-12 bg-gray-50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
@@ -156,6 +166,7 @@
             </div>
             
             <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog posts will be loaded here dynamically -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
                     <div class="p-6">
                         <div class="animate-pulse">
@@ -187,6 +198,7 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="py-16 px-6 md:px-12 bg-white">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12">
@@ -225,6 +237,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 text-center">
         <p class="text-gray-400">&copy; 2025 Shattered & Sent. All rights reserved.</p>
     </footer>
@@ -330,7 +343,7 @@
             }
         }
 
-        // --- NEW & IMPROVED MODAL FUNCTIONS ---
+        // --- NEW & IMPROVED MODAL FUNCTIONS (from previous update) ---
 
         // Open blog post in modal
         function openBlogPost(index) {
