@@ -481,7 +481,7 @@
     </section>
 
     <!-- Featured Study Guide Section -->
-    <section class="section-padding relative" style="background-image: url('Shattered Thumbnail.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section class="section-padding relative" style="background-image: url('Shattered Thumbnail.jpg'); background-size: cover; background-position: center;">
         <!-- Overlay for readability -->
         <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
         <div class="max-w-7xl mx-auto relative z-10">
@@ -813,10 +813,7 @@
             
             try {
                 const response = await fetch(`${API_BASE_URL}/api/blog-posts`);
-                console.log('Response status:', response.status, 'Response OK:', response.ok);
-                
                 const data = await response.json();
-                console.log('Data received:', data);
 
                 if (response.ok && data.posts && data.posts.length > 0) {
                     // Store posts globally for modal access
@@ -1298,8 +1295,8 @@
                 message: formData.get('message').trim()
             };
 
-            if (!data.name || !data.email || !data.message) {
-                showNotification('Please fill in all fields.', 'error');
+            if (!data.name || !data.email) {
+                showNotification('Please fill in your name and email address.', 'error');
                 return;
             }
 
